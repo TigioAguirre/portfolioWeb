@@ -1,57 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio rAguirre</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remigio Aguirre — Portfolio (en construcción)</title>
+<meta name="description" content="Portfolio de Remigio Aguirre, estudiante de software y desarrollador. Sitio en construcción.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Remigio Aguirre</h1>
-        <p>Estudiante de Software / Desarrollador</p>
-        <nav>
-            <a href="#sobre-mi">Sobre mí</a>
-            <a href="#proyectos">Proyectos</a>
-            <a href="#experiencia">Experiencia</a>
-            <a href="#certificaciones">Certificaciones</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
-    </header>
+<div class="scene">
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
 
-    <section id="sobre-mi">
-        <h2>Sobre mí</h2>
-        <p><!-- breve párrafo: quién eres, qué estudias, qué te interesa --></p>
-    </section>
+  <header class="masthead">
+    <h1>Remigio Aguirre</h1>
+    <p class="role">Estudiante de Software &amp; Desarrollador</p>
+  </header>
 
-    <section id="proyectos">
-        <h2>Proyectos</h2>
-        <div class="proyecto">
-            <h3><!-- nombre del proyecto --></h3>
-            <p><!-- qué hace, con qué tecnologías --></p>
-            <a href="#"><!-- link a GitHub o demo --></a>
-        </div>
-        <!-- repite este bloque .proyecto por cada proyecto -->
-    </section>
+  <main class="terminal" aria-label="Estado de construcción del sitio">
+    <div class="term-bar">
+      <span class="term-dots" aria-hidden="true">
+        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+      </span>
+      <span class="term-path">remigio@portfolio&nbsp;~/build</span>
+    </div>
 
-    <section id="experiencia">
-        <h2>Experiencia</h2>
-        <div class="item-experiencia">
-            <h3><!-- rol / responsabilidad --></h3>
-            <p><!-- descripción breve --></p>
-        </div>
-    </section>
+    <div class="term-body">
+      <pre id="log" class="term-log" aria-hidden="true"></pre>
+      <p class="sr-only" id="logAccessible">
+        whoami: Remigio Aguirre, estudiante de software y desarrollador.
+        stack: Java, MATLAB, C# con .NET, JavaScript.
+        Ejecutando build_portfolio.sh: compilando secciones del sitio, todavía en progreso.
+      </p>
+      <div class="term-prompt">
+        <span class="prompt-user">remigio@portfolio</span><span class="prompt-sep">:</span><span class="prompt-path">~$</span>
+        <span class="cursor" aria-hidden="true"></span>
+      </div>
+    </div>
+  </main>
 
-    <section id="certificaciones">
-        <h2>Certificaciones</h2>
-    </section>
+  <section class="status-panel" aria-label="Progreso de construcción del sitio">
+    <div class="progress-row">
+      <span class="progress-label">build_progress.sh</span>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
 
-    <section id="contacto">
-        <h2>Contacto</h2>
-        <p> email, LinkedIn, GitHub </p>
-    </section>
-    <h2>Sitio en Desarrollo.......</h1>
-    <script src="script.js"></script>
+    <ul class="task-list">
+      <li><span class="task-icon" data-state="pending">○</span>Sobre mí</li>
+      <li><span class="task-icon" data-state="pending">○</span>Proyectos</li>
+      <li><span class="task-icon" data-state="pending">○</span>Experiencia</li>
+      <li><span class="task-icon" data-state="pending">○</span>Certificaciones</li>
+      <li><span class="task-icon" data-state="done">●</span>Contacto</li>
+    </ul>
+  </section>
+
+  <footer class="links-row">
+    <a href="https://github.com/TigioAguirre" target="_blank" rel="noopener">[ GitHub ]</a>
+    <a href="mailto:tu-correo@ejemplo.com">[ Email ]</a>
+    <a href="#" target="_blank" rel="noopener">[ LinkedIn ]</a>
+  </footer>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
