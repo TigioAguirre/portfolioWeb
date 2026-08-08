@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Más sobre mí (en construcción) — Remigio Aguirre</title>
+<meta name="description" content="Sección 'Más sobre mí' del portafolio de Remigio Aguirre, estudiante de Ingeniería en Software en Quito. Página en construcción.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://remigioaguirre.com/masSobreMi/index.html">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="scene">
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="masthead">
+    <h1>Remigio Aguirre</h1>
+    <p class="role">Más sobre mí — Estudiante de Software &amp; Desarrollador Web en Quito</p>
+  </header>
+
+  <main class="terminal" aria-label="Estado de construcción de la sección Sobre mí">
+    <div class="term-bar">
+      <span class="term-dots" aria-hidden="true">
+        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+      </span>
+      <span class="term-path">remigio@portfolio&nbsp;~/about/build</span>
+    </div>
+
+    <div class="term-body">
+      <pre id="log" class="term-log" aria-hidden="true"></pre>
+      <p class="sr-only" id="logAccessible">
+        whoami: Remigio Aguirre, estudiante de Ingeniería de Software y desarrollador web en Quito.
+        Esta sección con más detalle sobre mi perfil todavía está en construcción.
+      </p>
+      <div class="term-prompt">
+        <span class="prompt-user">remigio@portfolio</span><span class="prompt-sep">:</span><span class="prompt-path">~$</span>
+        <span class="cursor" aria-hidden="true"></span>
+      </div>
+    </div>
+  </main>
+
+  <section class="status-panel" aria-label="Progreso de construcción de la sección">
+    <div class="progress-row">
+      <span class="progress-label">build_sobre-mi.sh</span>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <ul class="task-list">
+      <li><span class="task-icon" data-state="progress">◐</span>Sobre mí — en construcción</li>
+      <li><span class="task-icon" data-state="pending">○</span>Proyectos</li>
+      <li><span class="task-icon" data-state="pending">○</span>Certificaciones</li>
+      <li><span class="task-icon" data-state="done">●</span>Contacto</li>
+    </ul>
+  </section>
+
+  <footer class="links-row">
+    <a href="../index.html">[ Volver al inicio ]</a>
+    <a href="https://github.com/TigioAguirre" target="_blank" rel="noopener">[ GitHub ]</a>
+    <a href="mailto:rem.aguirre-sanchez@hotmail.com">[ Email ]</a>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

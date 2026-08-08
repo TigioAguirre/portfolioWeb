@@ -1,71 +1,398 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Remigio Aguirre — Portfolio (en construcción)</title>
-<meta name="description" content="Portfolio de Remigio Aguirre, estudiante de software y desarrollador. Sitio en construcción.">
+
+<!-- ===== SEO PRIMARIO ===== -->
+<title>Remigio Aguirre | Desarrollador Web y Pasante de TI en Quito, Ecuador</title>
+<meta name="description" content="Remigio Aguirre — desarrollador web y de software en Quito, Ecuador. Estudiante de Ingeniería en Software en la UDLA, en búsqueda de pasantía de TI en Quito. Desarrollo aplicaciones web, de escritorio en Java y herramientas numéricas en MATLAB. Portafolio, proyectos y contacto.">
+<meta name="keywords" content="Remigio Aguirre, desarrollador web Quito, desarrollador de software Quito, pasante TI Quito, pasante de sistemas Quito, estudiante de Ingeniería en Software, programador Quito, portafolio desarrollador, Java, MATLAB, JavaScript, UDLA">
+<meta name="author" content="Remigio Aguirre">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b0f0c">
+<link rel="canonical" href="https://remigioaguirre.com/">
+
+<!-- ===== OPEN GRAPH (Facebook / LinkedIn / WhatsApp) ===== -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Remigio Aguirre — Portafolio">
+<meta property="og:title" content="Remigio Aguirre | Desarrollador Web y Pasante de TI en Quito">
+<meta property="og:description" content="Portafolio de Remigio Aguirre, estudiante de Ingeniería en Software (UDLA) y desarrollador web en Quito, Ecuador, en búsqueda de pasantía de TI. Proyectos, habilidades y contacto.">
+<meta property="og:url" content="https://remigioaguirre.com/">
+<meta property="og:image" content="https://remigioaguirre.com/assets/og-cover.png">
+<meta property="og:locale" content="es_EC">
+
+<!-- ===== TWITTER / X CARD ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Remigio Aguirre | Desarrollador Web y Pasante de TI en Quito">
+<meta name="twitter:description" content="Portafolio de Remigio Aguirre, estudiante de Ingeniería en Software y desarrollador web en Quito, Ecuador.">
+<meta name="twitter:image" content="https://remigioaguirre.com/assets/og-cover.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<!-- ===== DATOS ESTRUCTURADOS (JSON-LD) — clave para el "knowledge panel" de Google ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Remigio Aguirre",
+  "alternateName": "Remigio Gonzalo Aguirre Sánchez",
+  "url": "https://remigioaguirre.com/",
+  "jobTitle": ["Desarrollador Web", "Desarrollador de Software", "Pasante de TI"],
+  "description": "Estudiante de Ingeniería en Software en la UDLA, desarrollador web y de software, y pasante de TI en Quito, Ecuador.",
+  "image": "https://remigioaguirre.com/assets/og-cover.png",
+  "email": "mailto:rem.aguirre-sanchez@hotmail.com",
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "Universidad de las Américas (UDLA)"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Universidad de las Américas (UDLA)"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Quito",
+    "addressCountry": "EC"
+  },
+  "knowsAbout": [
+    "Desarrollo web",
+    "Desarrollo de software",
+    "Java",
+    "JavaScript",
+    "MATLAB",
+    "C# .NET",
+    "Android/Kotlin",
+    "Flutter/Dart",
+    "Soporte TI"
+  ],
+  "sameAs": [
+    "https://github.com/TigioAguirre",
+    "https://linkedin.com/in/remigio-aguirre-s%C3%A1nchez-58373034b/",
+    "https://instagram.com/tigio_aguirre"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Remigio Aguirre — Portafolio",
+  "url": "https://remigioaguirre.com/"
+}
+</script>
 </head>
 <body>
 
-<div class="scene">
-  <div class="vignette" aria-hidden="true"></div>
-  <div class="scanlines" aria-hidden="true"></div>
+<canvas id="matrixRain" aria-hidden="true"></canvas>
+<div class="scanlines" aria-hidden="true"></div>
 
-  <header class="masthead">
-    <h1>Remigio Aguirre</h1>
-    <p class="role">Estudiante de Software &amp; Desarrollador</p>
-  </header>
+<!-- ===== NAV ===== -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="logo">RemigioAguirre<span>.com</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="active">Inicio</a>
+      <a href="#about">Sobre mí</a>
+      <a href="#journey">Trayectoria</a>
+      <a href="#skills">Habilidades</a>
+      <a href="#contact">Contacto</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
 
-  <main class="terminal" aria-label="Estado de construcción del sitio">
-    <div class="term-bar">
-      <span class="term-dots" aria-hidden="true">
-        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-      </span>
-      <span class="term-path">remigio@portfolio&nbsp;~/build</span>
-    </div>
-
-    <div class="term-body">
-      <pre id="log" class="term-log" aria-hidden="true"></pre>
-      <p class="sr-only" id="logAccessible">
-        whoami: Remigio Aguirre, estudiante de software y desarrollador.
-        stack: Java, MATLAB, C# con .NET, JavaScript.
-        Ejecutando build_portfolio.sh: compilando secciones del sitio, todavía en progreso.
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">Hola, soy</p>
+      <h1>
+  Remigio Aguirre
+  <span class="h1-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 8L5 12L9 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 8L19 12L15 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13.5 6.5L10.5 17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+  Ingeniería de Software
+</h1>
+      <h2 class="role"><span id="typed"></span><span class="cursor">|</span></h2>
+      <p class="hero-desc">
+        Soy Remigio Aguirre, estudiante de Ingeniería en Software en la UDLA y
+        desarrollador web en Quito, Ecuador, en búsqueda de una pasantía de TI.
+        Construyo soluciones de software, web, apps, sistemas, servicios y herramientas desde
+        interfaces en Java y MATLAB hasta proyectos web FullStack.
       </p>
-      <div class="term-prompt">
-        <span class="prompt-user">remigio@portfolio</span><span class="prompt-sep">:</span><span class="prompt-path">~$</span>
-        <span class="cursor" aria-hidden="true"></span>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Contáctame</a>
+        <a href="#about" class="btn btn-outline">Conóceme</a>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/TigioAguirre" target="_blank" rel="noopener" aria-label="GitHub de Remigio Aguirre">
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/remigio-aguirre-s%C3%A1nchez-58373034b/" target="_blank" rel="noopener" aria-label="LinkedIn de Remigio Aguirre">
+          <svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.5v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.6H9.5V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.3-1.8 3.6 0 4.2 2.4 4.2 5.4v6.2zM5.3 7.4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM7 20.4H3.6V9H7v11.4z"/></svg>
+        </a>
+        <a href="mailto:rem.aguirre-sanchez@hotmail.com" aria-label="Enviar correo a Remigio Aguirre">
+          <svg viewBox="0 0 24 24"><path d="M2 5h20v14H2V5zm2 2v.3l8 5.4 8-5.4V7H4zm16 2.4-7.4 5-.6.3-.6-.3L4 9.4V17h16V9.4z"/></svg>
+        </a>
+        <a href="https://instagram.com/tigio_aguirre" target="_blank" rel="noopener" aria-label="Instagram de Remigio Aguirre">
+  <svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.1 0 4.1.1 1 .1 1.7.2 2.3.5.6.2 1.1.6 1.6 1.1.5.5.8.9 1.1 1.6.2.6.4 1.3.5 2.3.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c-.1 1-.2 1.7-.5 2.3-.2.6-.6 1.1-1.1 1.6-.5.5-.9.8-1.6 1.1-.6.2-1.3.4-2.3.5-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1-.1-1.7-.2-2.3-.5-.6-.2-1.1-.6-1.6-1.1-.5-.5-.8-.9-1.1-1.6-.2-.6-.4-1.3-.5-2.3C2 15.1 2 14.7 2 12s0-3.1.1-4.1c.1-1 .2-1.7.5-2.3.2-.6.6-1.1 1.1-1.6.5-.5.9-.8 1.6-1.1.6-.2 1.3-.4 2.3-.5C8.9 2 9.3 2 12 2zm0 1.8c-2.6 0-2.9 0-4 .1-.8.1-1.3.2-1.6.3-.4.1-.7.3-1 .6-.3.3-.5.6-.6 1-.1.3-.3.8-.3 1.6-.1 1.1-.1 1.4-.1 4s0 2.9.1 4c.1.8.2 1.3.3 1.6.1.4.3.7.6 1 .3.3.6.5 1 .6.3.1.8.3 1.6.3 1.1.1 1.4.1 4 .1s2.9 0 4-.1c.8-.1 1.3-.2 1.6-.3.4-.1.7-.3 1-.6.3-.3.5-.6.6-1 .1-.3.3-.8.3-1.6.1-1.1.1-1.4.1-4s0-2.9-.1-4c-.1-.8-.2-1.3-.3-1.6-.1-.4-.3-.7-.6-1-.3-.3-.6-.5-1-.6-.3-.1-.8-.3-1.6-.3-1.1-.1-1.4-.1-4-.1zm0 3.1a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2zm0 1.8a3.3 3.3 0 1 0 0 6.6 3.3 3.3 0 0 0 0-6.6zm5.3-2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>
+</a>
       </div>
     </div>
-  </main>
-
-  <section class="status-panel" aria-label="Progreso de construcción del sitio">
-    <div class="progress-row">
-      <span class="progress-label">build_progress.sh</span>
-      <span class="progress-pct" id="progressPct">0%</span>
+    <div class="hero-visual">
+      <div class="avatar-ring">
+        <div class="avatar-core">
+          <img src="assets/remigioAguirre.jpeg" alt="Avatar de Remigio Aguirre" class="avatar-img">
+        </div>
+      </div>
+      <div class="hero-resume-links">
+        <a href="assets/CV_Remigio_Aguirre_General_ES.pdf" target="_blank" rel="noopener" class="btn btn-resume">Ver hoja de vida <span class="arrow">↗</span></a>
+        <a href="assets/CV_Remigio_Aguirre_General_EN.pdf" target="_blank" rel="noopener" class="btn btn-resume">View Resume <span class="arrow">↗</span></a>
+      </div>
     </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
+  </div>
+  <a href="#about" class="scroll-cue" aria-hidden="true"></a>
+</section>
 
-    <ul class="task-list">
-      <li><span class="task-icon" data-state="pending">○</span>Sobre mí</li>
-      <li><span class="task-icon" data-state="pending">○</span>Proyectos</li>
-      <li><span class="task-icon" data-state="pending">○</span>Experiencia</li>
-      <li><span class="task-icon" data-state="pending">○</span>Certificaciones</li>
-      <li><span class="task-icon" data-state="done">●</span>Contacto</li>
-    </ul>
-  </section>
-
-  <footer class="links-row">
-    <a href="https://github.com/TigioAguirre" target="_blank" rel="noopener">[ GitHub ]</a>
-    <a href="mailto:rem.aguirre-sanchez@hotmail.com">[ Email ]</a>
-  </footer>
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="section-head">
+    <p class="eyebrow center">Sobre mí</p>
+    <h2>Un poco <span>más de mí</span></h2>
+  </div>
+  <div class="about-inner">
+    <div class="about-avatar">
+  <div class="avatar-frame">
+    <img src="assets/remigioAguirre2.jpeg" alt="Foto de Remigio Aguirre" class="avatar-img">
+  </div>
 </div>
+    
+    <div class="about-content">
+      <div class="term-frame">
+        <div class="term-frame-bar">
+          <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+          <span class="term-frame-path">remigio@portfolio&nbsp;~/about</span>
+        </div>
+        <div class="term-frame-body">
+          <h3>Desarrollador de Software &amp; Estudiante de Ingeniería</h3>
+          <p>Actualmente me encuentro cursando Ingeniería en Software en la Universidad de las Américas (UDLA), donde combino la teoría con
+            proyectos reales académicos y personales:</p>
+            <ul>
+              <li>Desarrollo de aplicaciones de escritorio en Java y MATLAB.</li>
+              <li>Creación de servicios de Windows con C#.</li>
+              <li>Desarrollo web con HTML, CSS y JavaScript.</li>
+              <li>Apps móviles multiplataforma con Flutter.</li>
+            </ul>
+            <p>Además, cuento con formación técnica en Electrónica de  Consumo.
+            Esta base me permite diseñar soluciones integrales que van más allá de la pantalla, 
+            entendiendo a profundidad tanto el software como el hardware que lo respalda.
+            </p>
+          <div class="about-stats">
+            <div class="stat"><span>4°</span><small>Semestre actual</small></div>
+            <div class="stat"><span>3+</span><small>Proyectos en equipo</small></div>
+            <div class="stat"><span>3</span><small>Lenguajes activos</small></div>
+          </div>
+          <a href="masSobreMi/index.html" target="_blank" class="btn btn-primary">Más sobre mí</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOURNEY ===== -->
+<section class="journey" id="journey">
+  <div class="section-head">
+    <p class="eyebrow center">Trayectoria</p>
+    <h2>Mi <span>camino</span></h2>
+  </div>
+  <div class="journey-grid">
+    <div class="journey-col">
+      <div class="term-frame">
+        <div class="term-frame-bar">
+          <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+          <span class="term-frame-path">remigio@portfolio&nbsp;~/education</span>
+        </div>
+        <div class="term-frame-body">
+          <div class="timeline">
+            <div class="tl-item">
+              <span class="tl-date">2019 - 2024</span>
+              <h4>Técnico en Electrónica de Consumo</h4>
+              <p>Unidad Educativa Fiscomisional "Técnico Salesiano Don Bosco"</p>
+            </div>
+            <div class="tl-item">
+              <span class="tl-date">2024</span>
+              <h4>Escuela de Liderazgo LGMV: Competencias Líderes</h4>
+              <p>Universidad Hemisferios</p>
+            </div>
+            <div class="tl-item">
+              <span class="tl-date">2024-Presente</span>
+              <h4>Ingeniería de Software</h4>
+              <p>Universidad De Las Américas (UDLA)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="journey-col">
+      <div class="term-frame">
+        <div class="term-frame-bar">
+          <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+          <span class="term-frame-path">remigio@portfolio&nbsp;~/experience</span>
+        </div>
+        <div class="term-frame-body">
+          <div class="timeline">
+            <div class="tl-item">
+              <span class="tl-date">2023 - 2023</span>
+              <h4>Agencia de Regulación y Control de las Telecomunicaciones (ARCOTEL)</h4>
+              <p>Practicante, Dirección Técnica de Control del Espectro Radioeléctrico - Quito, Ecuador</p>
+            </div>
+            <div class="tl-item">
+              <span class="tl-date">2022 - Presente</span>
+              <h4>Área Comercial Papelería y Bazar</h4>
+              <p>Soporte Técnico IT y Atención al Cliente - Quito, Ecuador</p>
+            </div>
+            <div class="tl-item">
+              <span class="tl-date">2023 — Presente</span>
+              <h4>Proyectos personales</h4>
+              <p>Herramientas y sitios propios construidos con HTML, CSS y JavaScript.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="projects" style="display: flex; justify-content: center; margin-top: 20px;">
+    <a href="conoceMisProyectos/index.html" target="_blank" class="btn btn-primary">Conoce mis proyectos</a> 
+  </div>
+</section>
+
+
+<!-- ===== SKILLS ===== -->
+<section class="skills" id="skills">
+  <div class="section-head">
+    <p class="eyebrow center">Habilidades</p>
+    <h2>Mis <span>habilidades</span></h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skills-col">
+      <div class="term-frame">
+        <div class="term-frame-bar">
+          <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+          <span class="term-frame-path">remigio@portfolio&nbsp;~/skills/dev</span>
+        </div>
+        <div class="term-frame-body">
+          <div class="bar" data-value="85">
+            <div class="bar-top"><span>HTML &amp; CSS</span><em>85%</em></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+          </div>
+          <div class="bar" data-value="75">
+            <div class="bar-top"><span>JavaScript</span><em>75%</em></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+          </div>
+          <div class="bar" data-value="80">
+            <div class="bar-top"><span>Java</span><em>80%</em></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+          </div>
+          <div class="bar" data-value="70">
+            <div class="bar-top"><span>MATLAB</span><em>70%</em></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skills-col">
+      <div class="term-frame">
+        <div class="term-frame-bar">
+          <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+          <span class="term-frame-path">remigio@portfolio&nbsp;~/skills/pro</span>
+        </div>
+        <div class="term-frame-body">
+          <div class="bar" data-value="88">
+            <div class="bar-top"><span>Trabajo en equipo</span><em>88%</em></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+          </div>
+          <div class="bar" data-value="82">
+            <div class="bar-top"><span>Liderazgo de proyectos</span><em>82%</em></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+          </div>
+          <div class="bar" data-value="78">
+            <div class="bar-top"><span>Control de versiones (Git)</span><em>78%</em></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+          </div>
+          <div class="bar" data-value="74">
+            <div class="bar-top"><span>Resolución de problemas</span><em>74%</em></div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="projects" style="display: flex; justify-content: center; margin-top: 75px;">
+    <a href="conoceMisHabilidades/index.html" target="_blank" class="btn btn-primary">Conoce mis Certificaciones</a> 
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="section-head">
+    <p class="eyebrow center">Contacto</p>
+    <h2>Hablemos <span>de tu proyecto</span></h2>
+  </div>
+  <div class="term-frame contact-frame">
+    <div class="term-frame-bar">
+      <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+      <span class="term-frame-path">remigio@portfolio&nbsp;~/contact</span>
+    </div>
+    <div class="term-frame-body">
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="field">
+            <input type="text" id="name" name="name" placeholder=" " required>
+            <label for="name">Nombre completo</label>
+          </div>
+          <div class="field">
+            <input type="email" id="email" name="email" placeholder=" " required>
+            <label for="email">Correo electrónico</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <input type="tel" id="phone" name="phone" placeholder=" ">
+            <label for="phone">Número de contacto</label>
+          </div>
+          <div class="field">
+            <input type="text" id="subject" name="subject" placeholder=" " required>
+            <label for="subject">Asunto</label>
+          </div>
+        </div>
+        <div class="field">
+          <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+          <label for="message">Tu mensaje</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        <p class="form-note" id="formNote"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Remigio Aguirre. Todos los derechos reservados.</p>
+  <a href="#home" class="to-top" aria-label="Volver arriba">↑</a>
+</footer>
 
 <script src="script.js"></script>
 </body>

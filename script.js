@@ -1,81 +1,157 @@
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* ===== LLUVIA MATRIX (fondo, tono azul) ===== */
+(function matrixRain(){
+  const canvas = document.getElementById('matrixRain');
+  const ctx = canvas.getContext('2d');
+  const chars = "アイウエオカキクケコサシスセソ01アイウエオカキクケコ$#{}<>/;=+*";
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let columns, drops, fontSize = 16;
 
-const fecha = new Date().toLocaleDateString("es-EC", {
-  day: "2-digit",
-  month: "long",
-  year: "numeric"
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = Math.floor(canvas.width / fontSize);
+    drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * -40));
+  }
+
+  function draw(){
+    ctx.fillStyle = 'rgba(5, 10, 16, 0.18)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < columns; i++){
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      const y = drops[i] * fontSize;
+      ctx.fillStyle = Math.random() > 0.94 ? '#eef3f8' : '#29b6f6';
+      ctx.fillText(char, i * fontSize, y);
+      if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  if (prefersReducedMotion){
+    draw();
+  } else {
+    setInterval(draw, 55);
+  }
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ===== Año en el footer =====
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ===== Navbar: sombra al hacer scroll + link activo =====
+  const navbar = document.getElementById('navbar');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id], .hero[id]');
+
+  const onScroll = () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+
+    let current = sections[0].id;
+    const offset = 120;
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - offset) current = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+    });
+  };
+  document.addEventListener('scroll', onScroll);
+  onScroll();
+
+  // ===== Menú hamburguesa (mobile) =====
+  const burger = document.getElementById('burger');
+  const navList = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    navList.classList.toggle('open');
+  });
+  navLinks.forEach(link => link.addEventListener('click', () => {
+    burger.classList.remove('open');
+    navList.classList.remove('open');
+  }));
+
+  // ===== Efecto "máquina de escribir" en el rol del hero =====
+  const roles = ['Desarrollador de Software', 'Desarrollador Web en Quito', 'Estudiante de Ingeniería', 'Pasante de TI en Quito', 'Líder de Equipo'];
+  const typedEl = document.getElementById('typed');
+  let roleIndex = 0, charIndex = 0, deleting = false;
+
+  function typeLoop() {
+    const current = roles[roleIndex];
+    if (!deleting) {
+      charIndex++;
+      typedEl.textContent = current.slice(0, charIndex);
+      if (charIndex === current.length) {
+        deleting = true;
+        setTimeout(typeLoop, 1600);
+        return;
+      }
+    } else {
+      charIndex--;
+      typedEl.textContent = current.slice(0, charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+    }
+    setTimeout(typeLoop, deleting ? 40 : 80);
+  }
+  typeLoop();
+
+  // ===== Revelado de secciones + barras de habilidades al hacer scroll =====
+  const revealTargets = document.querySelectorAll(
+    '.about-content, .about-avatar, .journey-col, .skills-col, .contact-form, .tl-item'
+  );
+  revealTargets.forEach(el => el.classList.add('reveal'));
+
+  const bars = document.querySelectorAll('.bar');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        if (entry.target.classList.contains('bar')) {
+          const fill = entry.target.querySelector('.bar-fill');
+          fill.style.width = entry.target.dataset.value + '%';
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  revealTargets.forEach(el => observer.observe(el));
+  bars.forEach(bar => observer.observe(bar));
+
+  // ===== Formulario de contacto =====
+// ===== Formulario de contacto → WhatsApp =====
+const form = document.getElementById('contactForm');
+const note = document.getElementById('formNote');
+const WHATSAPP_NUMBER = '593995920940'; // ej: '593987654321'
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const subject = document.getElementById('subject').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  const texto =
+    `Hola Remigio, soy ${name}.\n` +
+    `Mi Correo es: ${email}\n` +
+    (phone ? `Mi Teléfono es: ${phone}\n` : '') +
+    `Te escribo para: ${subject}\n` +
+    `${message}`;
+
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`;
+
+  note.textContent = 'Abriendo WhatsApp con tu mensaje listo…';
+  window.open(url, '_blank');
+  form.reset();
 });
 
-const logLines = [
-  { text: "$ whoami", type: "cmd" },
-  { text: "> Remigio Aguirre — Estudiante de Software / Desarrollador", type: "out" },
-  { text: "", type: "out" },
-  { text: "$ cat stack.txt", type: "cmd" },
-  { text: "> Java · MATLAB · C# / .NET · JavaScript", type: "out" },
-  { text: "", type: "out" },
-  { text: "$ ./build_portfolio.sh", type: "cmd" },
-  { text: "> Compilando secciones... esto puede tardar unos días", type: "muted" },
-  { text: "> Última actualización: " + fecha, type: "muted" }
-];
-
-const logEl = document.getElementById("log");
-const progressFill = document.getElementById("progressFill");
-const progressPct = document.getElementById("progressPct");
-
-function renderInstant() {
-  logEl.textContent = logLines.map(l => l.text).join("\n");
-  startProgress();
-}
-
-function typeLines(lines, container, onDone) {
-  let lineIndex = 0;
-  let charIndex = 0;
-
-  function step() {
-    if (lineIndex >= lines.length) {
-      onDone();
-      return;
-    }
-    const current = lines[lineIndex];
-    if (charIndex === 0) {
-      const span = document.createElement("span");
-      span.className = "line-" + current.type;
-      span.dataset.buffer = "";
-      container.appendChild(span);
-    }
-    const activeSpan = container.lastElementChild;
-    if (charIndex < current.text.length) {
-      activeSpan.textContent += current.text[charIndex];
-      charIndex++;
-      setTimeout(step, 14 + Math.random() * 22);
-    } else {
-      container.appendChild(document.createTextNode("\n"));
-      lineIndex++;
-      charIndex = 0;
-      setTimeout(step, 90);
-    }
-  }
-  step();
-}
-
-function startProgress() {
-  const target = 62;
-  requestAnimationFrame(() => {
-    progressFill.style.width = target + "%";
-  });
-  const duration = prefersReducedMotion ? 0 : 1400;
-  const start = performance.now();
-  function tick(now) {
-    const elapsed = now - start;
-    const ratio = duration === 0 ? 1 : Math.min(elapsed / duration, 1);
-    progressPct.textContent = Math.round(target * ratio) + "%";
-    if (ratio < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-if (prefersReducedMotion) {
-  renderInstant();
-} else {
-  typeLines(logLines, logEl, startProgress);
-}
+});
