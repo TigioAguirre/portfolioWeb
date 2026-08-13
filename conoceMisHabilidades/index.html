@@ -159,8 +159,14 @@
   <a href="#top" class="to-top" aria-label="Volver arriba">↑</a>
 </footer>
 
-<!-- pdf.js: genera la vista previa (thumbnail) de cada certificado en PDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.js"></script>
+<!-- pdf.js: genera la vista previa (thumbnail) de cada certificado en PDF.
+     OJO: desde pdf.js v4 el CDN ya NO publica pdf.min.js / pdf.worker.min.js
+     (builds clásicas), solo los módulos ES pdf.min.mjs / pdf.worker.min.mjs.
+     Por eso se carga como <script type="module"> y se expone en window. -->
+<script type="module">
+  import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs";
+  window.pdfjsLib = pdfjsLib;
+</script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== Vista previa de cada certificado (PDF -> canvas) con pdf.js =====
   if (window.pdfjsLib) {
     pdfjsLib.GlobalWorkerOptions.workerSrc =
-      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
   }
 
   async function renderCertThumbnail(card){
@@ -59,7 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     try {
-      const pdf = await pdfjsLib.getDocument(url).promise;
+      const pdf = await pdfjsLib.getDocument({
+        url,
+        // Son PDFs de una sola página y pequeños: forzamos descarga completa
+        // en vez de peticiones "Range", que a veces fallan de forma
+        // intermitente contra el hosting (Vercel) y rompen la vista previa
+        // de algunos certificados sin que el PDF esté dañado.
+        disableStream: true,
+        disableAutoFetch: true,
+      }).promise;
       const page = await pdf.getPage(1);
       const baseViewport = page.getViewport({ scale: 1 });
 
