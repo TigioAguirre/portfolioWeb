@@ -1,0 +1,152 @@
+/* =========================================================
+   conoceMisHabilidades/styles.css
+   Extiende las variables y componentes de ../style.css
+   (--bg-deep, --accent, --accent-2, .term-frame, .btn, .reveal, etc.)
+   ========================================================= */
+
+/* ===== HEADER (barra superior simple, no fija) ===== */
+.page-header{
+  border-bottom:1px solid var(--line);
+  background:rgba(10,20,32,.75);
+  backdrop-filter:blur(10px);
+}
+.page-header-inner{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.5rem;
+}
+.page-header-links{display:flex;align-items:center;gap:1.4rem;}
+.back-link{
+  font-size:.9rem;font-weight:500;color:var(--muted);
+  transition:color .25s ease;
+}
+.back-link:hover{color:var(--accent);}
+.header-icon{
+  width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;transition:all .25s ease;
+}
+.header-icon svg{width:15px;height:15px;fill:var(--muted);transition:fill .25s ease;}
+.header-icon:hover{background:var(--accent);border-color:var(--accent);}
+.header-icon:hover svg{fill:#04121e;}
+
+/* ===== SUBHERO ===== */
+.subhero{
+  padding:5rem 1.5rem 3.5rem;
+  text-align:center;
+  background:
+    radial-gradient(60% 55% at 50% 0%, rgba(41,182,246,.14), transparent 70%),
+    var(--bg-deep);
+}
+.subhero-inner{max-width:760px;margin:0 auto;animation:riseIn .8s ease both;}
+.subhero-inner h1{font-size:clamp(2rem,4.4vw,2.9rem);margin-bottom:1.1rem;}
+.subhero-inner h1 span{color:var(--accent);}
+.subhero-desc{color:var(--muted);}
+
+/* ===== CERTIFICATIONS ===== */
+.cert-grid{
+  max-width:var(--maxw);margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2.4rem 1.8rem;
+}
+.cert-card{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;gap:1rem;
+  opacity:0;transform:translateY(24px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.cert-card.in{opacity:1;transform:translateY(0);}
+.cert-card:hover{z-index:20;}
+.cert-card:nth-child(1){transition-delay:.02s;}
+.cert-card:nth-child(2){transition-delay:.10s;}
+.cert-card:nth-child(3){transition-delay:.18s;}
+.cert-card:nth-child(4){transition-delay:.26s;}
+.cert-card:nth-child(5){transition-delay:.34s;}
+.cert-card:nth-child(6){transition-delay:.42s;}
+
+/* ===== Vista previa del PDF (thumbnail) ===== */
+.cert-preview{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  height:230px;
+  background:#f4f6f8;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 20px 50px -18px rgba(0,0,0,.55);
+  cursor:pointer;
+  transform-origin:center center;
+  transition:transform .35s cubic-bezier(.16,.84,.44,1), box-shadow .35s ease, border-color .35s ease;
+}
+.cert-preview:hover,
+.cert-preview:focus-visible{
+  transform:scale(1.1);
+  border-color:var(--accent);
+  box-shadow:0 30px 60px -14px var(--accent-glow), 0 0 0 1px var(--accent);
+}
+.cert-canvas{
+  display:block;
+  max-width:100%;
+  max-height:100%;
+  opacity:0;
+  transition:opacity .4s ease;
+}
+.cert-card.pdf-ready .cert-canvas{opacity:1;}
+/* placeholder mientras carga la vista previa */
+.cert-preview::before{
+  content:"Cargando vista previa…";
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:0 1rem;
+  font-family:var(--font-mono);font-size:.72rem;color:#8ea0b3;
+  background:#f4f6f8;
+  z-index:1;
+}
+.cert-card.pdf-ready .cert-preview::before,
+.cert-card.pdf-error .cert-preview::before{display:none;}
+.cert-card.pdf-error .cert-preview::before{
+  content:"No se pudo cargar la vista previa — haz clic para abrir el PDF";
+  display:flex;
+}
+/* al hacer hover, el overlay siempre tapa por completo el estado de abajo
+   (cargando / error), para que nunca se vean los dos textos superpuestos */
+.cert-preview:hover::before,
+.cert-preview:focus-visible::before{display:none;}
+.cert-preview-overlay{
+  position:absolute;inset:0;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(5,10,16,.88);
+  opacity:0;
+  transition:opacity .3s ease;
+  font-family:var(--font-mono);font-size:.82rem;font-weight:600;color:var(--text);
+  letter-spacing:.02em;
+  text-align:center;padding:0 1rem;
+}
+.cert-preview:hover .cert-preview-overlay,
+.cert-preview:focus-visible .cert-preview-overlay{opacity:1;}
+
+.cert-body{flex:1;min-width:0;}
+.cert-top{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:.6rem;
+  margin-bottom:.35rem;
+}
+.cert-top h3{font-size:1.02rem;line-height:1.3;}
+.cert-badge{
+  flex-shrink:0;
+  font-family:var(--font-mono);font-size:.66rem;font-weight:600;
+  padding:.25rem .6rem;border-radius:20px;white-space:nowrap;
+  border:1px solid rgba(64,196,120,.4);color:#6fdc9b;background:rgba(64,196,120,.1);
+}
+.cert-badge.progress{
+  border-color:rgba(255,196,64,.4);color:#ffcf6b;background:rgba(255,196,64,.1);
+}
+.cert-issuer{color:var(--accent);font-size:.8rem;font-weight:600;}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:960px){
+  .cert-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:560px){
+  .cert-grid{grid-template-columns:1fr;}
+  .page-header-inner{flex-wrap:wrap;gap:.8rem;}
+}
