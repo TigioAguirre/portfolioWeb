@@ -100,11 +100,16 @@
   display:flex;align-items:center;flex-wrap:wrap;gap:.7rem;
   margin-bottom:.4rem;
 }
-.project-title-row h2{font-size:1.3rem;}
+.project-title-row h2{font-size:1.3rem;min-width:0;}
+/* Badges como "Artículo Publicado Rev. Juventud y Ciencia Solidaria, Nº16 · 2024"
+   son texto largo: NO deben forzar el ancho de la tarjeta (nowrap + flex-shrink:0
+   rompía el layout en celular). Se les permite envolver en varias líneas y encogerse. */
 .project-badge{
-  flex-shrink:0;
+  flex-shrink:1;
+  max-width:100%;
   font-family:var(--font-mono);font-size:.66rem;font-weight:600;
-  padding:.25rem .6rem;border-radius:20px;white-space:nowrap;
+  padding:.25rem .6rem;border-radius:20px;
+  white-space:normal;overflow-wrap:break-word;line-height:1.4;
   border:1px solid rgba(64,196,120,.4);color:#6fdc9b;background:rgba(64,196,120,.1);
 }
 .project-badge.progress{
@@ -140,29 +145,40 @@
 }
 .shot-gallery::-webkit-scrollbar{height:7px;}
 .shot-gallery::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
+
+/* ---- cuadro uniforme para cada captura -----------------------------------
+   El proyecto mezcla capturas verticales de celular (ej. 738x1600) con
+   capturas horizontales de escritorio (ej. 1599x899). Antes se fijaba solo
+   la altura y el ancho quedaba libre: las verticales salían diminutas
+   (~120px de ancho) y las horizontales se estiraban +450px obligando a
+   scroll excesivo. Ahora cada .shot es un cuadro de tamaño fijo (mismo
+   ancho y alto para todas) y la imagen usa object-fit:contain, así que
+   toda captura -vertical u horizontal- se ve completa y a buen tamaño,
+   sin recortarse ni deformarse. El ancho se adapta de forma fluida con
+   clamp() según el viewport, así que no hace falta breakpoint aparte. */
 .shot{
   flex:0 0 auto;
-  height:360px; /* altura fija para toda la galería */
+  width:clamp(200px, 34vw, 300px);
+  aspect-ratio:4/5;
   border-radius:12px;overflow:hidden;
   border:1px solid var(--line);
   background:var(--bg-panel-alt);
-  scroll-snap-align:start;
+  scroll-snap-align:center;
   box-shadow:0 14px 30px -14px rgba(0,0,0,.5);
 }
-.shot img{height:100%;width:auto;object-fit:contain;display:block;}
+.shot img{width:100%;height:100%;object-fit:contain;display:block;}
 .shot iframe{width:100%;height:100%;display:block;border:0;}
 
 /* ---- variante para VIDEOS de YouTube (formato horizontal 16:9, no reel/short) ----
    Úsala en vez de .shot cuando el contenido sea un <iframe> de un video normal:
    <div class="shot shot-video"><iframe ...></iframe></div> */
 .shot-video{
-  height:360px; /* misma altura que .shot; el iframe necesita medida explícita */
-  width:auto;
+  width:min(88vw, 480px);
   aspect-ratio:16/9;
 }
+
 @media (max-width:560px){
-  .shot{height:260px;}
-  .shot-video{height:260px;}
+  .shot-gallery{gap:.8rem;scroll-snap-type:x mandatory;}
 }
 
 /* ---- TARJETA DE VIDEO (thumbnail + play + título) -----------------------
