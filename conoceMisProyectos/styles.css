@@ -1,274 +1,240 @@
-:root {
-  --bg: #10131a;
-  --bg-alt: #171b24;
-  --border: #2a2f3a;
-  --text: #e7e5e0;
-  --muted: #8890a0;
-  --amber: #e8a33d;
-  --cyan: #7dd3fc;
-  --ok: #8fbf7f;
-  --font-display: "Space Grotesk", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
+/* =========================================================
+   conoceMisProyectos/styles.css
+   Extiende las variables y componentes de ../style.css
+   (--bg-deep, --accent, --accent-2, .term-frame, .btn, .reveal, etc.)
+   ========================================================= */
+
+/* ===== HEADER (barra superior simple, no fija — igual que conoceMisHabilidades) ===== */
+.page-header{
+  border-bottom:1px solid var(--line);
+  background:rgba(10,20,32,.75);
+  backdrop-filter:blur(10px);
+}
+.page-header-inner{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.5rem;
+}
+.page-header-links{display:flex;align-items:center;gap:1.4rem;}
+.back-link{
+  font-size:.9rem;font-weight:500;color:var(--muted);
+  transition:color .25s ease;
+}
+.back-link:hover{color:var(--accent);}
+
+/* ===== SUBHERO ===== */
+.subhero{
+  padding:5rem 1.5rem 3.5rem;
+  text-align:center;
+  background:
+    radial-gradient(60% 55% at 50% 0%, rgba(41,182,246,.14), transparent 70%),
+    var(--bg-deep);
+}
+.subhero-inner{max-width:760px;margin:0 auto;animation:riseIn .8s ease both;}
+.subhero-inner h1{font-size:clamp(2rem,4.4vw,2.9rem);margin-bottom:1.1rem;}
+.subhero-inner h1 span{color:var(--accent);}
+.subhero-desc{color:var(--muted);}
+
+/* ===== SECCIÓN DE PROYECTOS ===== */
+.projects-section{padding-top:1rem;}
+.projects-section + .projects-section{
+  border-top:1px solid var(--line);
+  margin-top:1rem;
 }
 
-* { box-sizing: border-box; }
-
-html, body {
-  height: 100%;
-  margin: 0;
+/* ===== TÍTULO DE SECCIÓN (separa "Mis Proyectos" de "Participaciones en Concursos") ===== */
+.section-title{
+  max-width:var(--maxw);margin:0 auto;
+  padding:0 1.5rem 2.4rem;
+  text-align:center;
+}
+.section-title h2{
+  font-size:clamp(1.6rem,3.2vw,2.1rem);
+  margin-bottom:.6rem;
+}
+.section-title h2 span{color:var(--accent);}
+.section-title p{color:var(--muted);font-size:.98rem;max-width:520px;margin:0 auto;}
+.section-title{
+  opacity:0;transform:translateY(16px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.section-title.in{opacity:1;transform:translateY(0);}
+.project-grid{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;flex-direction:column;
+  gap:3rem;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-mono);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 32px 16px;
-  overflow-x: hidden;
+/* ===== TARJETA DE PROYECTO (ficha estilo "app store") ===== */
+.project-card{
+  background:var(--bg-panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:2rem;
+  box-shadow:0 20px 50px -18px rgba(0,0,0,.55);
+  opacity:0;transform:translateY(24px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.project-card.in{opacity:1;transform:translateY(0);}
+
+/* ---- encabezado: icono + título + tagline + badges de tecnología ---- */
+.project-head{
+  display:flex;gap:1.4rem;align-items:flex-start;
+  margin-bottom:1.8rem;
+}
+.project-icon{
+  flex-shrink:0;
+  width:64px;height:64px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(145deg, var(--accent), var(--accent-2));
+  color:#04121e;
+  font-family:var(--font-display);font-weight:800;font-size:1.15rem;
+  box-shadow:0 10px 26px -10px var(--accent-glow);
+  overflow:hidden;
+}
+.project-icon img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.project-head-text{flex:1;min-width:0;}
+.project-title-row{
+  display:flex;align-items:center;flex-wrap:wrap;gap:.7rem;
+  margin-bottom:.4rem;
+}
+.project-title-row h2{font-size:1.3rem;}
+.project-badge{
+  flex-shrink:0;
+  font-family:var(--font-mono);font-size:.66rem;font-weight:600;
+  padding:.25rem .6rem;border-radius:20px;white-space:nowrap;
+  border:1px solid rgba(64,196,120,.4);color:#6fdc9b;background:rgba(64,196,120,.1);
+}
+.project-badge.progress{
+  border-color:rgba(255,196,64,.4);color:#ffcf6b;background:rgba(255,196,64,.1);
+}
+.project-tagline{
+  color:var(--muted);font-size:.95rem;margin-bottom:.9rem;min-height:1.4em;
+}
+.project-tech{display:flex;flex-wrap:wrap;gap:.55rem;}
+.tech-pill{
+  font-family:var(--font-mono);font-size:.72rem;color:var(--accent);
+  border:1px solid var(--line);background:rgba(41,182,246,.06);
+  padding:.3rem .7rem;border-radius:20px;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+/* ---- problema / solución, dos "terminales" lado a lado ---- */
+.problem-solution{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;
+  margin-bottom:1.8rem;
+}
+.problem-solution .term-frame-body{padding:1.3rem 1.4rem;}
+.placeholder-text{
+  color:var(--muted);font-size:.92rem;font-style:italic;
 }
 
-.scene {
-  position: relative;
-  width: 100%;
-  max-width: 620px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 1;
+/* ---- galería de capturas (scroll horizontal, estilo App Store) ---- */
+.shot-gallery{
+  display:flex;gap:1rem;overflow-x:auto;
+  align-items:center;
+  padding:.4rem .2rem 1rem;
+  scroll-snap-type:x proximity;
+  margin-bottom:1.6rem;
+}
+.shot-gallery::-webkit-scrollbar{height:7px;}
+.shot-gallery::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px;}
+.shot{
+  flex:0 0 auto;
+  height:360px; /* altura fija para toda la galería */
+  border-radius:12px;overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--bg-panel-alt);
+  scroll-snap-align:start;
+  box-shadow:0 14px 30px -14px rgba(0,0,0,.5);
+}
+.shot img{height:100%;width:auto;object-fit:contain;display:block;}
+.shot iframe{width:100%;height:100%;display:block;border:0;}
+
+/* ---- variante para VIDEOS de YouTube (formato horizontal 16:9, no reel/short) ----
+   Úsala en vez de .shot cuando el contenido sea un <iframe> de un video normal:
+   <div class="shot shot-video"><iframe ...></iframe></div> */
+.shot-video{
+  height:360px; /* misma altura que .shot; el iframe necesita medida explícita */
+  width:auto;
+  aspect-ratio:16/9;
+}
+@media (max-width:560px){
+  .shot{height:260px;}
+  .shot-video{height:260px;}
 }
 
-.vignette {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse at center, rgba(16, 19, 26, 0) 0%, rgba(8, 9, 13, 0.9) 100%);
+/* ---- TARJETA DE VIDEO (thumbnail + play + título) -----------------------
+   Alternativa al <iframe> para videos con "embebido deshabilitado" por el
+   dueño (YouTube no permite reproducirlos dentro de la página). En su lugar
+   se muestra el thumbnail con un botón de play que abre el video en YouTube
+   en una pestaña nueva.
+
+   Uso (dentro de un .shot.shot-video):
+   <a class="video-card" href="https://www.youtube.com/watch?v=ID" target="_blank" rel="noopener">
+     <img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="Título del video" loading="lazy">
+     <span class="video-card-play" aria-hidden="true">
+       <svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"></polygon></svg>
+     </span>
+     <span class="video-card-info">
+       <span class="video-card-title">Título del video</span>
+       <span class="video-card-channel">Remigio Aguirre</span>
+     </span>
+   </a>
+   --------------------------------------------------------------------- */
+.video-card{
+  position:relative;display:block;
+  width:100%;height:100%;
+  background:#000;
+}
+.video-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .4s ease, filter .4s ease;
+}
+.video-card:hover img{transform:scale(1.04);filter:brightness(.75);}
+.video-card-play{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(20,20,20,.75);
+  border:2px solid rgba(255,255,255,.85);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .25s ease, transform .25s ease;
+}
+.video-card:hover .video-card-play{
+  background:#ff0000;transform:translate(-50%,-50%) scale(1.08);
+}
+.video-card-play svg{width:20px;height:20px;fill:#fff;margin-left:3px;}
+.video-card-info{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:1.6rem .8rem .6rem;
+  background:linear-gradient(to top, rgba(0,0,0,.88), rgba(0,0,0,0));
+  display:flex;flex-direction:column;gap:.15rem;
+}
+.video-card-title{
+  color:#fff;font-size:.82rem;font-weight:600;line-height:1.25;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.video-card-channel{color:#c7d0da;font-size:.72rem;}
+.shot-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:1rem;
+  font-family:var(--font-mono);font-size:.75rem;color:var(--muted);
+  border:1px dashed var(--line);
+  background:repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 10px, transparent 10px 20px);
 }
 
-.scanlines {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  background: repeating-linear-gradient(
-    0deg,
-    #fff,
-    #fff 1px,
-    transparent 1px,
-    transparent 3px
-  );
+/* ---- enlaces del proyecto ---- */
+.project-links{display:flex;gap:1rem;flex-wrap:wrap;}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:760px){
+  .problem-solution{grid-template-columns:1fr;}
+  .project-card{padding:1.5rem;}
+  .project-head{gap:1rem;}
 }
-
-.masthead {
-  text-align: center;
-  margin-bottom: 4px;
-}
-
-.masthead h1 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.6rem, 5vw, 2.2rem);
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-
-.masthead .role {
-  font-family: var(--font-mono);
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin: 6px 0 0;
-}
-
-.terminal {
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-}
-
-.term-bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  background: #1b202b;
-  border-bottom: 1px solid var(--border);
-}
-
-.term-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.dot-r { background: #6b4141; }
-.dot-y { background: #6b5c3a; }
-.dot-g { background: #3f5c42; }
-
-.term-path {
-  color: var(--muted);
-  font-size: 0.8rem;
-  margin-left: 4px;
-}
-
-.term-body {
-  padding: 18px 20px 22px;
-  min-height: 210px;
-}
-
-.term-log {
-  margin: 0;
-  white-space: pre-wrap;
-  word-break: break-word;
-  font-size: 0.85rem;
-  line-height: 1.65;
-}
-
-.term-log .line-cmd { color: var(--cyan); }
-.term-log .line-out { color: var(--text); }
-.term-log .line-muted { color: var(--muted); }
-
-.term-prompt {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 10px;
-  font-size: 0.85rem;
-}
-
-.prompt-user { color: var(--amber); }
-.prompt-sep { color: var(--muted); }
-.prompt-path { color: var(--cyan); }
-
-.cursor {
-  width: 8px;
-  height: 16px;
-  background: var(--amber);
-  margin-left: 4px;
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-.status-panel {
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 18px 20px;
-}
-
-.progress-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-
-.progress-pct {
-  color: var(--amber);
-}
-
-.progress-track {
-  height: 6px;
-  background: #1c212b;
-  border-radius: 999px;
-  overflow: hidden;
-  margin-bottom: 16px;
-}
-
-.progress-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--amber), var(--cyan));
-  transition: width 1.4s ease;
-  border-radius: 999px;
-}
-
-.task-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 0.85rem;
-}
-
-.task-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--muted);
-}
-
-.task-icon {
-  font-size: 0.7rem;
-  width: 14px;
-}
-
-.task-icon[data-state="pending"] { color: var(--muted); }
-.task-icon[data-state="progress"] { color: var(--amber); animation: blink 1.4s step-end infinite; }
-.task-icon[data-state="done"] { color: var(--ok); }
-
-.links-row {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  font-size: 0.85rem;
-  flex-wrap: wrap;
-}
-
-.links-row a {
-  color: var(--text);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-
-.links-row a:hover,
-.links-row a:focus-visible {
-  color: var(--amber);
-  border-bottom-color: var(--amber);
-}
-
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--cyan);
-  outline-offset: 2px;
-}
-
-@media (max-width: 480px) {
-  .term-body { padding: 16px; min-height: 250px; }
-  .status-panel { padding: 16px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cursor { animation: none; opacity: 1; }
-  .progress-fill { transition: none; }
-  .scanlines { display: none; }
+@media (max-width:560px){
+  .page-header-inner{flex-wrap:wrap;gap:.8rem;}
 }

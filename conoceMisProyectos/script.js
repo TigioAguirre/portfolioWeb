@@ -1,81 +1,80 @@
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* ===== LLUVIA MATRIX (mismo efecto de fondo que el resto del sitio) ===== */
+(function matrixRain(){
+  const canvas = document.getElementById('matrixRain');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const chars = "アイウエオカキクケコサシスセソ01アイウエオカキクケコ$#{}<>/;=+*";
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let columns, drops, fontSize = 16;
 
-const fecha = new Date().toLocaleDateString("es-EC", {
-  day: "2-digit",
-  month: "long",
-  year: "numeric"
-});
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = Math.floor(canvas.width / fontSize);
+    drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * -40));
+  }
 
-const logLines = [
-  { text: "$ whoami", type: "cmd" },
-  { text: "> Remigio Aguirre — Estudiante de Ingeniería de Software / Desarrollador Web en Quito", type: "out" },
-  { text: "", type: "out" },
-  { text: "$ ls proyectos/", type: "cmd" },
-  { text: "> VeloGrid · EncenderPCAgent · NFC Locks · SavingsApp · Modo Sencillito", type: "out" },
-  { text: "", type: "out" },
-  { text: "$ ./build_seccion.sh --proyectos", type: "cmd" },
-  { text: "> Preparando fichas y capturas de cada proyecto... esto puede tardar unos días", type: "muted" },
-  { text: "> Última actualización: " + fecha, type: "muted" }
-];
-
-const logEl = document.getElementById("log");
-const progressFill = document.getElementById("progressFill");
-const progressPct = document.getElementById("progressPct");
-
-function renderInstant() {
-  logEl.textContent = logLines.map(l => l.text).join("\n");
-  startProgress();
-}
-
-function typeLines(lines, container, onDone) {
-  let lineIndex = 0;
-  let charIndex = 0;
-
-  function step() {
-    if (lineIndex >= lines.length) {
-      onDone();
-      return;
-    }
-    const current = lines[lineIndex];
-    if (charIndex === 0) {
-      const span = document.createElement("span");
-      span.className = "line-" + current.type;
-      span.dataset.buffer = "";
-      container.appendChild(span);
-    }
-    const activeSpan = container.lastElementChild;
-    if (charIndex < current.text.length) {
-      activeSpan.textContent += current.text[charIndex];
-      charIndex++;
-      setTimeout(step, 14 + Math.random() * 22);
-    } else {
-      container.appendChild(document.createTextNode("\n"));
-      lineIndex++;
-      charIndex = 0;
-      setTimeout(step, 90);
+  function draw(){
+    ctx.fillStyle = 'rgba(5, 10, 16, 0.18)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < columns; i++){
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      const y = drops[i] * fontSize;
+      ctx.fillStyle = Math.random() > 0.94 ? '#eef3f8' : '#29b6f6';
+      ctx.fillText(char, i * fontSize, y);
+      if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
     }
   }
-  step();
-}
 
-function startProgress() {
-  const target = 55;
-  requestAnimationFrame(() => {
-    progressFill.style.width = target + "%";
+  resize();
+  window.addEventListener('resize', resize);
+
+  if (prefersReducedMotion){
+    draw();
+  } else {
+    setInterval(draw, 55);
+  }
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ===== Año en el footer =====
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ===== Aparición progresiva (fade + slide) de cada tarjeta y título de sección =====
+  const revealTargets = document.querySelectorAll('.project-card, .section-title');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealTargets.forEach(el => revealObserver.observe(el));
+
+  // ===== Galería de capturas: permitir arrastrar con el mouse (drag-to-scroll) =====
+  document.querySelectorAll('.shot-gallery').forEach(gallery => {
+    let isDown = false, startX, scrollLeft;
+
+    gallery.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - gallery.offsetLeft;
+      scrollLeft = gallery.scrollLeft;
+    });
+    ['mouseleave', 'mouseup'].forEach(evt =>
+      gallery.addEventListener(evt, () => { isDown = false; })
+    );
+    gallery.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - gallery.offsetLeft;
+      const walk = (x - startX) * 1.2;
+      gallery.scrollLeft = scrollLeft - walk;
+    });
   });
-  const duration = prefersReducedMotion ? 0 : 1400;
-  const start = performance.now();
-  function tick(now) {
-    const elapsed = now - start;
-    const ratio = duration === 0 ? 1 : Math.min(elapsed / duration, 1);
-    progressPct.textContent = Math.round(target * ratio) + "%";
-    if (ratio < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-if (prefersReducedMotion) {
-  renderInstant();
-} else {
-  typeLines(logLines, logEl, startProgress);
-}
+});

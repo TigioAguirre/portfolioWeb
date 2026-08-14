@@ -3,74 +3,705 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mis Proyectos (en construcción) — Remigio Aguirre</title>
-<meta name="description" content="Sección de proyectos del portafolio de Remigio Aguirre, desarrollador web y de software en Quito. Página en construcción.">
-<meta name="robots" content="noindex, follow">
+
+<!-- ===== SEO ===== -->
+<title>Proyectos y Concursos | Remigio Aguirre</title>
+<meta name="description" content="Proyectos de desarrollo de software y participaciones en concursos de Remigio Aguirre: problemática, solución e imágenes de cada proyecto. Desarrollador web y estudiante de Ingeniería en Software en Quito.">
+<meta name="keywords" content="Remigio Aguirre, proyectos, concursos, portafolio de proyectos, desarrollador web Quito, estudiante de Ingeniería en Software, Android, .NET, Java, Flutter">
+<meta name="author" content="Remigio Aguirre">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b0f0c">
 <link rel="canonical" href="https://www.remigioaguirre.com/conoceMisProyectos/index.html">
+
+<!-- ===== OPEN GRAPH ===== -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Remigio Aguirre - Portafolio">
+<meta property="og:title" content="Proyectos y Concursos | Remigio Aguirre">
+<meta property="og:description" content="Proyectos de desarrollo de software y concursos de Remigio Aguirre, desarrollador web en Quito: problemática, solución e imágenes de cada uno.">
+<meta property="og:url" content="https://www.remigioaguirre.com/conoceMisProyectos/index.html">
+<meta property="og:image" content="https://www.remigioaguirre.com/assets/og-cover.png">
+<meta property="og:locale" content="es_EC">
+
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../assets/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Reutiliza la hoja de estilos global del sitio (colores, botones, term-frame, fuentes, reveal) -->
+<link rel="stylesheet" href="../style.css">
+<!-- Estilos propios de esta página (tarjetas de proyecto estilo "ficha de app store") -->
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body id="top">
 
-<div class="scene">
-  <div class="vignette" aria-hidden="true"></div>
-  <div class="scanlines" aria-hidden="true"></div>
+<canvas id="matrixRain" aria-hidden="true"></canvas>
+<div class="scanlines" aria-hidden="true"></div>
 
-  <header class="masthead">
-    <h1>Remigio Aguirre</h1>
-    <p class="role">Mis Proyectos — Estudiante de Software &amp; Desarrollador Web en Quito</p>
-  </header>
-
-  <main class="terminal" aria-label="Estado de construcción de la sección Proyectos">
-    <div class="term-bar">
-      <span class="term-dots" aria-hidden="true">
-        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-      </span>
-      <span class="term-path">remigio@portfolio&nbsp;~/proyectos/build</span>
+<!-- ===== HEADER ===== -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <a href="../index.html" class="logo">RemigioAguirre<span>.com</span></a>
+    <div class="page-header-links">
+      <a href="#proyectos" class="back-link">Proyectos</a>
+      <a href="#concursos" class="back-link">Concursos</a>
+      <a href="../index.html#journey" class="back-link">Volver al Inicio</a>
     </div>
+  </div>
+</header>
 
-    <div class="term-body">
-      <pre id="log" class="term-log" aria-hidden="true"></pre>
-      <p class="sr-only" id="logAccessible">
-        whoami: Remigio Aguirre, estudiante de Ingeniería de Software y desarrollador web en Quito.
-        Estos son algunos de los proyectos en los que he trabajado: VeloGrid, EncenderPCAgent, NFC Locks, SavingsApp.
-        Esta sección todavía está en construcción.
-      </p>
-      <div class="term-prompt">
-        <span class="prompt-user">remigio@portfolio</span><span class="prompt-sep">:</span><span class="prompt-path">~$</span>
-        <span class="cursor" aria-hidden="true"></span>
-      </div>
-    </div>
-  </main>
+<!-- ===== SUBHERO (único, une proyectos y concursos) ===== -->
+<section class="subhero">
+  <div class="subhero-inner">
+    <h1>Proyectos y<span> Concursos</span></h1>
+    <p class="subhero-desc">
+      Cada proyecto aquí se presenta como la ficha de una app: el problema que resolví,
+      la solución que construí y capturas que muestran el resultado. También encontrarás
+      los concursos y competencias en los que he participado.
+    </p>
+  </div>
+</section>
 
-  <section class="status-panel" aria-label="Progreso de construcción de la sección">
-    <div class="progress-row">
-      <span class="progress-label">build_proyectos.sh</span>
-      <span class="progress-pct" id="progressPct">0%</span>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
+<!-- =========================================================
+     SECCIÓN DE PROYECTOS
+     Cada proyecto es un bloque .project-card independiente.
+     Para agregar un proyecto nuevo, copia un bloque completo
+     <article class="project-card"> ... </article> y pégalo
+     antes del cierre de </div> del project-grid.
 
-    <ul class="task-list">
-      <li><span class="task-icon" data-state="pending">○</span>Sobre mí</li>
-      <li><span class="task-icon" data-state="progress">◐</span>Proyectos — en construcción</li>
-      <li><span class="task-icon" data-state="pending">○</span>Certificaciones</li>
-      <li><span class="task-icon" data-state="done">●</span>Contacto</li>
-    </ul>
-  </section>
+     Dentro de cada tarjeta debes rellenar tú:
+       1) .project-tagline           -> una línea corta (como el subtítulo de una app)
+       2) .problem-solution "Problema" -> qué problema/necesidad resolvías
+       3) .problem-solution "Solución" -> cómo lo resolviste técnicamente
+       4) .shot-gallery -> reemplaza cada <div class="shot-placeholder">
+          por: <img src="RUTA_DE_TU_IMAGEN.jpg" alt="Descripción de la captura">
+          (mantén el contenedor .shot para que el scroll y el tamaño se conserven)
+     ========================================================= -->
+<section class="projects-section" id="proyectos">
+  <div class="section-title">
+    <h2>Mis <span>Proyectos</span></h2>
+    <p>Software que diseñé y construí de principio a fin, de la idea al despliegue.</p>
+  </div>
 
-  <footer class="links-row">
-    <a href="../index.html">[ Volver al inicio ]</a>
-    <a href="https://github.com/TigioAguirre" target="_blank" rel="noopener">[ GitHub ]</a>
-    <a href="mailto:rem.aguirre-sanchez@hotmail.com">[ Email ]</a>
-  </footer>
+  <div class="project-grid" id="projectGrid">
+
+        <!-- ============ PROYECTO 1: NFC Locks ============ -->
+    <article class="project-card">
+      <div class="project-head">
+     <div class="project-icon" aria-hidden="true">
+  <img src="../assets/nfcLocks.png" alt="">
 </div>
+        <div class="project-head-text">
+          <div class="project-title-row">
+            <h2>NFC Locks</h2>
+            <span class="project-badge done">Proyecto de Grado · 2024</span>
+          </div>
+          <p class="project-tagline">Cerraduras electrónicas con tarjetas NFC y control remoto desde una app, para proteger vitrinas de locales comerciales</p>
+          <div class="project-tech">
+            <span class="tech-pill">Arduino</span>
+            <span class="tech-pill">Wi-Fi</span>
+            <span class="tech-pill">RFID / NFC</span>
+            <span class="tech-pill">Base de datos en tiempo real</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-solution">
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/problema</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Los locales comerciales pequeños que exhiben productos en vitrinas abiertas
+              sufren pérdidas constantes por hurto, tanto de clientes como de empleados
+              con acceso libre a los estantes. El dueño no tiene forma de saber quién
+              manipuló una vitrina ni cuándo, y debe estar físicamente presente para
+              sentir que sus productos están seguros.
+            </p>
+            </div>
+        </div>
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/solucion</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Diseñe "NFC Locks": Una cerradura electrónica
+              construida sobre una placa PCB propia usando Arduino Nano para las cerraduras y el módulo Wifi ESP8266 para el control remoto,
+              esta lee una tarjeta NFC que manda una señal para abrir la cerradura, esto al detectar una tarjeta registrada. Si la tarjeta es válida, un solenoide libera la
+              puerta ; si no lo es, la
+              cerradura permanece bloqueada y no manda señal de apertura.
+              Cada apertura queda registrada en la nube y se puede monitorear y
+              controlar en tiempo real desde una app hecha en Kodular, con login de
+              usuario, panel de administrador y estado en vivo (conectado/desconectado,
+              abierto/cerrado) de cada vitrina. El código del Arduino y la carcasa de
+              la placa fueron diseñados, soldados e impresos en 3D por el equipo desde cero.
+            </p>
+            </div>
+        </div>
+      </div>
+
+      <div class="shot-gallery">
+        <div class="shot shot-video">
+          <iframe
+            src="https://www.youtube.com/embed/VYj4Y_ZFn_8"
+            title="NFC Locks - Next Force Security"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+        
+        <div class="shot">
+          <img src="../assets/placa3D.png" alt="Placa PCB diseñada e impresa en 3D para la cerradura NFC">
+        </div>
+        <div class="shot">
+          <img src="../assets/nfcApp.jpg" alt="App para controlar la cerradura NFC">
+        </div>
+        <div class="shot">
+          <img src="../assets/carcasas3D.png" alt="Diseño 3D de las carcasas impresas para la cerradura NFC">
+        </div>
+        <div class="shot">
+          <img src="../assets/EquipoArmadoNFC.jpeg" alt="Equipo armado de la cerradura NFC con la placa">
+        </div>
+      </div>
+ 
+    </article>
+
+
+
+   <article class="project-card">
+      <div class="project-head">
+        <div class="project-icon" aria-hidden="true">
+          <img src="../assets/encenderPC.png" alt="">
+        </div>
+        <div class="project-head-text">
+          <div class="project-title-row">
+            <h2>Encender PC</h2>
+            <span class="project-badge progress">Proyecto Personal · En Desarrollo</span>
+          </div>
+          <p class="project-tagline">Enciende tu PC remotamente con el botón de play/pause de tu smartband, sin abrir ninguna app</p>
+          <div class="project-tech">
+            <span class="tech-pill">Android · Kotlin</span>
+            <span class="tech-pill">MediaSession API</span>
+            <span class="tech-pill">NotificationListenerService</span>
+            <span class="tech-pill">Webhooks (Home Assistant / IFTTT)</span>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="problem-solution">
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/problema</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Tras automatizar mi casa, incluyendo el uso remoto de mi PC y prenderla/apagarla para no dejarla encendida todo el día,
+              me di cuenta que hacerlo normalmente requiere muchos pasos:
+              En mi caso, al haber automatizado este proceso mediante alexa era 
+              Buscar la alexa app, abrir la app, buscar el chat con alexa y decirle que encienda mi computadora. 
+              Si bien no se escuchan como muchos pasos, se vuelve tedioso con el uso constante de esta utilidad y yo quería
+              algo más inmediato: 
+              Un solo gesto físico, sin desbloquear el celular ni
+              tocar nada, aprovechando un dispositivo que ya llevo puesto todo el día:
+              mi smartband.
+            </p>
+          </div>
+        </div>
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/solucion</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Desarrollé "EncenderPC Companion", una app de Android que registra una
+              sesión de medios (MediaSession) "fantasma" con un audio silencioso, para
+              que el botón físico de play/pause de la banda tenga un destino al que
+              enviar la pulsación. Esa sesión solo se activa si el interruptor
+              principal está encendido y ninguna otra app de música real está sonando,
+              para no interferir con Spotify o YouTube Music. Al presionar el botón,
+              la app llama a un webhook configurable (Home Assistant, IFTTT o
+              VirtualSmartHome) que enciende la PC, y confirma la acción con una
+              notificación y un destello de color en pantalla. Un tutorial guiado
+              acompaña al usuario por los 4 permisos que exige Android para que todo
+              funcione en segundo plano sin que el sistema mate el servicio.
+              Firebase se encarga de la autenticación de usuario, del emparejamiento
+              de un nuevo equipo y del envío de notificaciones push (FCM). Además,
+              desarrollé un servicio de Windows para instalar en la PC que reporta si
+              ya está encendida o si se apagó, cumpliendo una función extra de control
+              para conocer el estado real del equipo.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="shot-gallery">
+
+
+        <div class="shot">
+          <img src="../assets/Encender3.jpeg" alt="Captura 1">
+        </div>
+        <div class="shot">
+          <img src="../assets/Encender4.jpeg" alt="Captura 2">
+        </div>
+        <div class="shot">
+          <img src="../assets/Encender5.jpeg" alt="Captura 3">
+        </div>
+        <div class="shot">
+          <img src="../assets/Encender6.jpeg" alt="Captura 4">
+        </div>
+        <div class="shot">
+          <img src="../assets/Encender7.jpeg" alt="Captura 5">
+        </div>
+        <div class="shot">
+          <img src="../assets/Encender8.jpeg" alt="Band 1">
+        </div>
+        <div class="shot">
+          <img src="../assets/Encender10.jpeg" alt="Band 2">
+        </div>
+        <div class="shot">
+          <img src="../assets/encender1.png" alt="Servicio en Windows 1">
+        </div>
+        <div class="shot">
+          <img src="../assets/encender2.png" alt="Servicio en Windows 2">
+        </div>
+  
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/TigioAguirre/EncenderPCCompanion" class="btn btn-outline" target="_blank" rel="noopener">Ver en GitHub</a>
+      </div>
+    </article>
+
+
+
+
+
+          <!-- ============ PROYECTO 3: VelóGrid ============ -->
+     <article class="project-card">
+      <div class="project-head">
+        <div class="project-icon" aria-hidden="true">
+          <img src="../assets/VeloGridIc.ico" alt="VelóGrid">
+        </div>
+        <div class="project-head-text">
+          <div class="project-title-row">
+            <h2>VelóGrid</h2>
+            <span class="project-badge done">Proyecto Final 4to Semestre · 2026</span>
+          </div>
+          <p class="project-tagline">Encuentra la ruta más eficiente para moverte en bicicleta por la ciudad</p>
+          <div class="project-tech">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">Swing (UI)</span>
+            <span class="tech-pill">Grafos dirigidos ponderados</span>
+            <span class="tech-pill">Algoritmo de Dijkstra</span>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="problem-solution">
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/problema</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Movilizarse en bicicleta dentro de una ciudad es distinto a moverse en
+              auto: lo que hace falta no es la ruta más corta, sino la más segura y
+              transitable para un ciclista. Las apps de mapas tradicionales no
+              consideran esto, y planificar un trayecto a mano, calle por calle, es
+              lento e impreciso.
+            </p>
+          </div>
+        </div>
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/solucion</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Desarrolle "VeloGrid", una aplicación de escritorio en Java con interfaz
+              en Swing que modela la red vial de la ciudad como un grafo dirigido y
+              ponderado: cada intersección es un nodo y cada calle una arista con su
+              propio peso. Sobre esa estructura aplicamos el algoritmo de Dijkstra
+              para calcular la ruta óptima entre dos puntos, permitiendo crear,
+              editar y visualizar trayectos ciclistas de forma rápida e intuitiva.
+              VeloGrid fue desarrollado como proyecto final de Programación III en la UDLA, aplicando patrones de diseño y principios de
+              arquitectura de software vistos en el curso.
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="shot-gallery">
+        <div class="shot">
+          <img src="../assets/velogridCap0.png" alt="Captura 0 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap1.png" alt="Captura 1 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap2.png" alt="Captura 2 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap3.png" alt="Captura 3 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap4.png" alt="Captura 4 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap5.png" alt="Captura 5 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap6.png" alt="Captura 6 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap7.png" alt="Captura 7 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap8.png" alt="Captura 8 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap9.png" alt="Captura 9 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap10.png" alt="Captura 10 de VelóGrid">
+        </div>
+        <div class="shot">
+          <img src="../assets/velogridCap11.png" alt="Captura 11 de VelóGrid">
+        </div>
+
+        
+      </div>
+ 
+      <div class="project-links">
+        <a href="https://github.com/TigioAguirre/ProyectoFinalPrograIII-VeloGrid" class="btn btn-outline" target="_blank" rel="noopener">Ver en GitHub</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     SECCIÓN DE CONCURSOS
+     Reutiliza la misma tarjeta .project-card (mismo formato
+     "problema/solución/capturas"), pero agrupada aparte porque
+     no son productos de software terminados sino participaciones
+     en competencias/concursos.
+     ========================================================= -->
+<section class="projects-section" id="concursos">
+  <div class="section-title">
+    <h2>Participaciones en <span>Concursos</span></h2>
+    <p>Competencias y retos donde apliqué ideas de negocio, innovación y trabajo en equipo.</p>
+  </div>
+ 
+  <div class="project-grid" id="contestGrid">
+ 
+    <!-- ============ CONCURSO 1: Modo Sencillito (Diners Club - Enfócate) ============ -->
+    <article class="project-card">
+      <div class="project-head">
+        <div class="project-icon" aria-hidden="true">MS</div>
+        <div class="project-head-text">
+          <div class="project-title-row">
+            <h2>Modo Sencillito</h2>
+            <span class="project-badge done">Finalista Enfócate 4ta Ed. · 2026</span>
+          </div>
+          <p class="project-tagline">Modo simplificado dentro de la App Blu de Diners Club para que los adultos mayores hagan banca digital sin miedo a equivocarse</p>
+          <div class="project-tech">
+            <span class="tech-pill">Investigación UX</span>
+            <span class="tech-pill">Modelo de negocio</span>
+            <span class="tech-pill">Prototipo en Figma</span>
+            <span class="tech-pill">Equipo CELEST</span>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="problem-solution">
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/problema</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Las apps bancarias están diseñadas pensando en usuarios jóvenes y
+              experimentados con la tecnología, lo que genera fricción real en los
+              adultos mayores: letras pequeñas, demasiadas opciones en pantalla y
+              ningún botón visible de "Cerrar Sesión". En nuestra investigación
+              encontramos que esto se traduce en pánico a cometer un error, una carga
+              cognitiva alta solo para iniciar sesión (muchos dependen de libretas
+              físicas con sus contraseñas) y confirmaciones de transacción que a
+              veces tardan días en llegar. El resultado: este segmento termina
+              dependiendo de canales caros como la ventanilla o el Call Center, aun
+              cuando en Ecuador los canales digitales ya mueven el 58,5% del monto
+              total de transacciones (Forbes, 2023).
+            </p>
+          </div>
+        </div>
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/solucion</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Propusimos "Modo Sencillito": no una app nueva, sino una capa de
+              experiencia de usuario activable dentro de la App Blu de Diners Club,
+              que reduce la interfaz estándar a 5 acciones esenciales, con botones
+              30% más grandes, alto contraste y confirmación inmediata en cada
+              transacción. Para resolver la desconfianza inicial diseñamos un sistema
+              de "Padrinos Digitales": un familiar joven acompaña la activación y
+              ambos reciben millas Diners Club como incentivo (800 para el adulto
+              mayor y 300 para su padrino en modo asistido, o 1.000 si el adulto
+              mayor se activa solo), con una barra de progreso gamificada ("Meta 13")
+              que motiva el uso recurrente hasta el punto donde la relación se vuelve
+              rentable para el banco. La propuesta incluye un modelo de negocio
+              completo (costos, ROI, viabilidad técnica y financiera) y quedó validada
+              con entrevistas y pruebas de usabilidad reales a adultos mayores, más un
+              prototipo navegable en Figma. Como equipo "CELEST" (con Angélica
+              Toscano e Isaac Toapanta) quedamos finalistas en la 4ta edición del
+              concurso Enfócate.
+            </p>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="shot-gallery">
+        <div class="shot">
+          <img src="../assets/Enfocate.jpeg" alt="Captura 1 de Modo Sencillito">
+          </div><div class="shot">
+          <img src="../assets/remigioAguirre2.jpeg" alt="Captura 1 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito1.png" alt="Captura 1 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito2.png" alt="Captura 2 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito3.png" alt="Captura 3 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito4.png" alt="Captura 4 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito5.png" alt="Captura 5 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito6.png" alt="Captura 6 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito7.png" alt="Captura 7 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito8.png" alt="Captura 8 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito9.png" alt="Captura 9 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito10.png" alt="Captura 10 de Modo Sencillito">
+          </div>
+          <div class="shot">
+          <img src="../assets/ModoSencillito11.png" alt="Captura 11 de Modo Sencillito">
+          </div>
+
+      </div>
+ 
+      <div class="project-links">
+        <a href="https://www.figma.com/proto/PZK4IEGpgq1Dka4dB6QoR4/Modo-Facilito?node-id=0-1&t" class="btn btn-outline" target="_blank" rel="noopener">Ver prototipo en Figma</a>
+      </div>
+    </article>
+ 
+     <!-- ============ CONCURSO 2: RADI (Revista Juventud y Ciencia Solidaria - UPS) ============ -->
+    <article class="project-card">
+      <div class="project-head">
+        <div class="project-icon" aria-hidden="true">RD</div>
+        <div class="project-head-text">
+          <div class="project-title-row">
+            <h2>RADI</h2>
+            <span class="project-badge done">Artículo Publicado Rev. Juventud y Ciencia Solidaria, Nº16 · 2024</span>
+          </div>
+          <p class="project-tagline">Estación de sensores IoT que monitorea radiación UV y factores ambientales para prevenir riesgos a la salud en Quito</p>
+          <div class="project-tech">
+            <span class="tech-pill">IoT · ESP8266</span>
+            <span class="tech-pill">Panel solar + PWM</span>
+            <span class="tech-pill">Dashboard en la nube</span>
+            <span class="tech-pill">Materiales reciclados</span>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="problem-solution">
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/problema</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Como estudiantes del Colegio Técnico Salesiano Don Bosco - Kennedy nos
+              preguntamos cómo usar datos ambientales a nuestro favor para volver a
+              Quito una ciudad más sostenible y prevenir enfermedades y daños a la
+              salud que factores como la radiación UV pueden causar a la población.
+              La mayoría de la gente no tiene forma de saber, en el momento, qué tan
+              expuesta está a estos riesgos en su propio entorno.
+            </p>
+          </div>
+        </div>
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/solucion</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Junto a Santiago Benavides, José Borja y Kevin Fajardo construimos "RADI",
+              un prototipo de estación de sensores IoT sobre un microcontrolador ESP8266
+              capaz de monitorear humedad, temperatura, presión, sonido, presencia de
+              lluvia y, sobre todo, radiación ultravioleta. Los datos se envían a un
+              Dashboard en la nube para verlos en tiempo real, y la estación incluye un
+              semáforo físico de radiación UV que informa a la población cercana las
+              precauciones sugeridas por la OMS según el nivel detectado. Para que fuera
+              sostenible, alimentamos el sistema con un panel solar y un regulador de
+              voltaje PWM, y priorizamos materiales reciclados en su construcción. El
+              proyecto quedó documentado como artículo científico y publicado en la
+              Revista Juventud y Ciencia Solidaria de la Universidad Politécnica
+              Salesiana (Número 16, junio 2024).
+            </p>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="shot-gallery">
+        <div class="shot">
+          <img src="../assets/radi1.png" alt="Captura 1 de RADI">
+          </div>
+          <div class="shot">
+          <img src="../assets/Radi.jpeg" alt="Foto 1 de RADI">
+          </div>
+        <div class="shot">
+          <img src="../assets/radi2.png" alt="Captura 2 de RADI">
+          </div>
+        <div class="shot">
+          <img src="../assets/radi3.jpg" alt="Captura 3 de RADI">
+          </div>
+          <div class="shot">
+          <img src="../assets/radi4.jpg" alt="Captura 3 de RADI">
+          </div>
+
+      </div>
+ 
+      <div class="project-links">
+        <a href="https://dspace.ups.edu.ec/handle/123456789/28251" class="btn btn-outline" target="_blank" rel="noopener">Ver artículo publicado</a>
+        <a href="https://dspace.ups.edu.ec/bitstream/123456789/28251/1/Rev_Juv_Cie_Sol_1618.pdf" class="btn btn-outline" target="_blank" rel="noopener">Descargar PDF</a>
+      </div>
+    </article>
+ 
+    <!-- ============ CONCURSO 3: RADI en la Feria EPN - Portal Shopping ============ -->
+    <article class="project-card">
+      <div class="project-head">
+        <div class="project-icon" aria-hidden="true">RD</div>
+        <div class="project-head-text">
+          <div class="project-title-row">
+            <h2>RADI</h2>
+            <span class="project-badge done">2do Lugar · 1ra Feria de Ciencias EPN - Portal Shopping · 2023</span>
+          </div>
+          <p class="project-tagline">Estación de sensores IoT para monitorear radiación UV y factores ambientales, 2do lugar en la primera feria de ciencias EPN - Portal Shopping</p>
+          <div class="project-tech">
+            <span class="tech-pill">IoT · ESP8266</span>
+            <span class="tech-pill">Panel solar + PWM</span>
+            <span class="tech-pill">Dashboard en la nube</span>
+            <span class="tech-pill">Materiales reciclados</span>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="problem-solution">
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/problema</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              La EPN y el centro comercial Portal Shopping convocaron a estudiantes de
+              2do y 3ro de bachillerato de colegios fiscales, municipales y
+              fiscomisionales de Quito a proponer un prototipo, experimento o maqueta
+              que resolviera un problema ambiental, bajo el lema "De mentes inquietas
+              a soluciones brillantes: construyamos juntos un Quito más sostenible".
+              Como estudiantes del Colegio Técnico Salesiano Don Bosco - Kennedy nos
+              enfocamos en un riesgo ambiental que casi nadie mide en el día a día: la
+              exposición a la radiación ultravioleta y su impacto en la salud de la
+              población.
+            </p>
+          </div>
+        </div>
+        <div class="term-frame">
+          <div class="term-frame-bar">
+            <span class="term-frame-dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="term-frame-path">~/solucion</span>
+          </div>
+          <div class="term-frame-body">
+            <p class="placeholder-text">
+              Junto a Santiago Benavides, José Borja y Kevin Fajardo presentamos "RADI",
+              nuestro prototipo de estación de sensores IoT construido sobre un
+              microcontrolador ESP8266, capaz de monitorear humedad, temperatura,
+              presión, sonido, presencia de lluvia y, principalmente, radiación
+              ultravioleta, con los datos disponibles en tiempo real en un Dashboard en
+              la nube. La estación incluye un semáforo físico de radiación UV que
+              informa a la población cercana las precauciones sugeridas por la OMS
+              según el nivel detectado, alimentado por un panel solar con regulador de
+              voltaje PWM y construido priorizando materiales reciclados. De entre los
+              proyectos recibidos, fuimos parte de los 10 finalistas que expusieron en
+              stands el 18 de octubre en la Plaza Central del Portal Shopping ante el
+              público y un jurado calificador, y con RADI obtuvimos el 2do lugar de la
+              primera edición de esta feria.
+            </p>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="shot-gallery">
+        <div class="shot">
+          <img src="../assets/PremioRadi0.jpeg" alt="Captura 3 de RADI">
+          </div>
+          <div class="shot">
+          <img src="../assets/PremioRadi1.jpeg" alt="Captura 3 de RADI">
+          </div>
+          <div class="shot">
+          <img src="../assets/PremioRadi.jpeg" alt="Captura 3 de RADI">
+          </div>
+      </div>
+ 
+      <div class="project-links">
+        <a href="https://webhistorico.epn.edu.ec/premiacion-feria-epn-portal/" class="btn btn-outline" target="_blank" rel="noopener">Ver premiación en la EPN</a>
+      </div>
+    </article>
+ 
+    <!-- Para un concurso nuevo: copia desde <article class="project-card"> hasta </article> y pégalo aquí -->
+
+  </div>
+
+  <div class="projects" style="display:flex;justify-content:center;margin-top:3rem;">
+    <a href="../index.html#contact" class="btn btn-primary">Hablemos de tu proyecto</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Remigio Aguirre. Todos los derechos reservados.</p>
+  <a href="#top" class="to-top" aria-label="Volver arriba">↑</a>
+</footer>
 
 <script src="script.js"></script>
 </body>
