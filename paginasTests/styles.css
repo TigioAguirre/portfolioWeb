@@ -175,7 +175,7 @@ body {
   display: flex; justify-content: center; flex-wrap: wrap;
 }
 .category-inner a {
-  color: var(--paper); text-decoration: none; font-weight: 600; font-size: 12px; letter-spacing: 0.5px;
+  color: var(--paper); text-decoration: none; font-weight: 700; font-size: 16px; letter-spacing: 0.5px;
   padding: 22px 30px; text-align: center; transition: background 0.2s;
 }
 .category-inner a:hover { background: rgba(0,0,0,0.1); }
@@ -200,7 +200,7 @@ body {
   max-width: 1300px; margin: 24px auto; padding: 0 24px;
 }
 .hero-slider {
-  background: var(--brand-blue);
+  background: var(--brand-red);
   border-radius: 12px;
   overflow: hidden;
   position: relative;
