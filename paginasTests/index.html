@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área Comercial</title>
+  <!-- Importando la fuente Montserrat (Equivalente a Avenir Next) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ OVERLAY DE ANIMACIÓN DE ENTRADA ============ -->
+  <div id="intro" class="intro">
+    <div class="intro-logo-composite">
+      <img src="assets/Logo areacomercial.jpg" class="logo-top-part" alt="Área Comercial">
+      <img src="assets/Logo areacomercial.jpg" class="logo-bottom-part" alt="Papelería - Tecnología - Bazar">
+      <span class="intro-shine"></span>
+    </div>
+  </div>
+
+  <!-- ============ CONTENIDO PRINCIPAL DE LA PÁGINA ============ -->
+  <div id="main-content" class="main-wrapper">
+
+    <!-- Bloque fijo (sticky) con Topbar + Categorías + Banner de pagos -->
+    <div class="site-header" id="siteHeader">
+
+      <!-- 1. Barra Superior Corporativa / Utilidades -->
+      <header class="topbar">
+        <div class="topbar-inner">
+          <a href="#" class="topbar-brand">
+            <img src="assets/Logo web.jpg" class="topbar-logo" alt="Área Comercial - Papelería, Tecnología y Bazar">
+          </a>
+          <nav class="topbar-nav">
+            <a href="#lista">Lista de útiles</a>
+            <a href="#destacados">Destacados</a>
+            <a href="#corporativo">Corporativo</a>
+            <a href="#sucursales">Sucursales</a>
+          </nav>
+        </div>
+      </header>
+
+      <!-- 2. Barra de Categorías -->
+      <nav class="category-bar">
+        <div class="category-inner">
+          <a href="#">TECNOLOGÍA</a>
+          <a href="#">HOGAR</a>
+          <a href="#">ESCOLAR Y OFICINA</a>
+          <a href="#">LIBROS Y TEXTOS</a>
+          <a href="#">ARTE Y MANUALIDADES</a>
+          <a href="#">JUGUETES Y EMPAQUES</a>
+          <a href="#">MASCOTAS</a>
+          <a href="#" class="highlight">OFERTAS DEL MES</a>
+        </div>
+      </nav>
+
+      <!-- 3. Banner Promocional de Pagos -->
+      
+      </div>
+
+    </div>
+
+    <!-- 4. Hero Section (Slider Principal, funcional) -->
+    <main class="hero-section">
+      <div class="hero-slider" id="heroSlider">
+
+        <!-- Flecha Izquierda -->
+        <button class="slider-arrow arrow-left" id="prevArrow" aria-label="Promoción anterior">❮</button>
+
+        <div class="slider-track" id="sliderTrack">
+
+          <div class="slide" aria-hidden="false">
+            <div class="slide-left">
+              <div class="placeholder-image">🚚</div>
+            </div>
+            <div class="slide-right">
+              <h1 class="hero-title">ENVÍO GRATIS</h1>
+              <h2 class="hero-subtitle">Todo el mes de Agosto!!</h2>
+              <a href="#" class="btn-primary">COMPRA AHORA</a>
+            </div>
+          </div>
+
+          <div class="slide" aria-hidden="true">
+            <div class="slide-left">
+              <div class="placeholder-image">🏷️</div>
+            </div>
+            <div class="slide-right">
+              <h1 class="hero-title">OFERTAS DEL MES</h1>
+              <h2 class="hero-subtitle">Hasta 40% de descuento</h2>
+              <a href="#" class="btn-primary">VER OFERTAS</a>
+            </div>
+          </div>
+
+          <div class="slide" aria-hidden="true">
+            <div class="slide-left">
+              <div class="placeholder-image">🎒</div>
+            </div>
+            <div class="slide-right">
+              <h1 class="hero-title">REGRESO A CLASES</h1>
+              <h2 class="hero-subtitle">Todo para el nuevo año escolar</h2>
+              <a href="#" class="btn-primary">EXPLORAR</a>
+            </div>
+          </div>
+
+          <div class="slide" aria-hidden="true">
+            <div class="slide-left">
+              <div class="placeholder-image">💳</div>
+            </div>
+            <div class="slide-right">
+              <h1 class="hero-title">12 MESES SIN INTERÉS</h1>
+              <h2 class="hero-subtitle">Con tus tarjetas de crédito preferidas</h2>
+              <a href="#" class="btn-primary">CONOCE MÁS</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Flecha Derecha -->
+        <button class="slider-arrow arrow-right" id="nextArrow" aria-label="Siguiente promoción">❯</button>
+
+        <!-- Puntos del Slider -->
+        <div class="slider-dots" id="sliderDots">
+          <button class="dot active" data-index="0" aria-label="Ir a promoción 1"></button>
+          <button class="dot" data-index="1" aria-label="Ir a promoción 2"></button>
+          <button class="dot" data-index="2" aria-label="Ir a promoción 3"></button>
+          <button class="dot" data-index="3" aria-label="Ir a promoción 4"></button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ============ BOCETO: Barra de confianza / beneficios ============ -->
+    <section class="trust-bar">
+      <div class="trust-inner">
+        <div class="trust-item">
+          <div class="trust-icon">🚚</div>
+          <div class="trust-text"><strong>Envío gratis</strong><span>En compras desde $30</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">💳</div>
+          <div class="trust-text"><strong>Hasta 12 meses sin interés</strong><span>Con tarjetas seleccionadas</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🔒</div>
+          <div class="trust-text"><strong>Compra 100% segura</strong><span>Pagos protegidos</span></div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🎧</div>
+          <div class="trust-text"><strong>Atención personalizada</strong><span>Escríbenos por WhatsApp</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOCETO: Buscador de lista de útiles escolares ============ -->
+    <section id="lista" class="section">
+      <div class="list-finder">
+        <div class="list-finder-copy">
+          <h3>Encuentra la lista de útiles de tu colegio</h3>
+          <p>Selecciona el colegio y el grado, y arma el pedido completo en un solo clic. Nosotros preparamos el paquete y tú solo lo retiras o lo recibes en casa.</p>
+        </div>
+        <form class="list-finder-form" onsubmit="return false;">
+          <div>
+            <label for="colegio">Colegio</label>
+            <select id="colegio">
+              <option>Selecciona un colegio</option>
+              <option>Unidad Educativa San Gabriel</option>
+              <option>Colegio Americano de Quito</option>
+              <option>Colegio Marista</option>
+              <option>Otro / no está en la lista</option>
+            </select>
+          </div>
+          <div>
+            <label for="grado">Grado</label>
+            <select id="grado">
+              <option>Selecciona un grado</option>
+              <option>Inicial</option>
+              <option>Primero de básica</option>
+              <option>Segundo de básica</option>
+              <option>Tercero de básica</option>
+            </select>
+          </div>
+          <button type="submit">Buscar lista</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ BOCETO: Productos destacados ============ -->
+    <section id="destacados" class="section section-alt">
+      <div class="section-header">
+        <span class="section-eyebrow">Lo más buscado</span>
+        <h2 class="section-title">Productos destacados</h2>
+        <p class="section-desc">Una selección de los artículos con mejor rotación esta semana. Reemplaza estos espacios por fotos y precios reales del catálogo.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <span class="product-tag">-20%</span>
+          <div class="product-thumb">✏️</div>
+          <div class="product-info">
+            <p class="product-name">Set de 12 lápices de colores</p>
+            <p class="product-price"><span class="product-price-old">$5.50</span>$4.40</p>
+            <a href="#" class="product-btn">Ver producto</a>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb">🎒</div>
+          <div class="product-info">
+            <p class="product-name">Mochila escolar reforzada</p>
+            <p class="product-price">$28.90</p>
+            <a href="#" class="product-btn">Ver producto</a>
+          </div>
+        </div>
+        <div class="product-card">
+          <span class="product-tag">Nuevo</span>
+          <div class="product-thumb">🖥️</div>
+          <div class="product-info">
+            <p class="product-name">Audífonos inalámbricos</p>
+            <p class="product-price">$19.99</p>
+            <a href="#" class="product-btn">Ver producto</a>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb">📓</div>
+          <div class="product-info">
+            <p class="product-name">Cuaderno universitario x3</p>
+            <p class="product-price">$6.75</p>
+            <a href="#" class="product-btn">Ver producto</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOCETO: Ventas corporativas ============ -->
+    <section id="corporativo" class="section">
+      <div class="corporate-block">
+        <div>
+          <div class="corporate-icon">🏢</div>
+        </div>
+        <div class="corporate-copy">
+          <h3>Convenios y ventas corporativas</h3>
+          <p>Provisión de suministros de oficina, tecnología y regalos empresariales para tu institución, con precios preferenciales y facturación centralizada.</p>
+          <ul class="corporate-list">
+            <li>Descuentos por volumen</li>
+            <li>Crédito directo para empresas</li>
+            <li>Entrega programada a domicilio u oficina</li>
+            <li>Asesor comercial dedicado</li>
+          </ul>
+          <a href="https://wa.me/593998741034?text=Hola%2C%20quiero%20información%20sobre%20ventas%20corporativas" target="_blank" rel="noopener" class="btn-outline">Hablar con un asesor</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOCETO: Sucursales (direcciones de ejemplo, reemplazar por las reales) ============ -->
+    <section id="sucursales" class="section section-alt">
+      <div class="section-header">
+        <span class="section-eyebrow">Encuéntranos</span>
+        <h2 class="section-title">Nuestras sucursales <span class="draft-badge">Direcciones de ejemplo</span></h2>
+        <p class="section-desc">Reemplaza estas direcciones, horarios y teléfonos por los datos reales de cada local.</p>
+      </div>
+      <div class="branches-grid">
+        <div class="branch-card">
+          <span class="branch-city">Quito</span>
+          <h3 class="branch-name">Sucursal La Carolina</h3>
+          <div class="branch-detail"><span class="icon">📍</span><span>Av. Amazonas N38-15 y Naciones Unidas, Quito</span></div>
+          <div class="branch-detail"><span class="icon">🕒</span><span>Lun a sáb: 9:00 – 19:00</span></div>
+          <div class="branch-detail"><span class="icon">📞</span><span>(02) 234 5678</span></div>
+          <div class="branch-map">🗺️</div>
+        </div>
+        <div class="branch-card">
+          <span class="branch-city">Quito</span>
+          <h3 class="branch-name">Sucursal El Condado</h3>
+          <div class="branch-detail"><span class="icon">📍</span><span>Av. Mariana de Jesús Oe7-31 y Occidental, Quito</span></div>
+          <div class="branch-detail"><span class="icon">🕒</span><span>Lun a sáb: 9:00 – 19:00</span></div>
+          <div class="branch-detail"><span class="icon">📞</span><span>(02) 245 6789</span></div>
+          <div class="branch-map">🗺️</div>
+        </div>
+        <div class="branch-card">
+          <span class="branch-city">Guayaquil</span>
+          <h3 class="branch-name">Sucursal Mall del Sol</h3>
+          <div class="branch-detail"><span class="icon">📍</span><span>Av. Juan Tanca Marengo, Guayaquil</span></div>
+          <div class="branch-detail"><span class="icon">🕒</span><span>Lun a dom: 10:00 – 20:00</span></div>
+          <div class="branch-detail"><span class="icon">📞</span><span>(04) 267 8901</span></div>
+          <div class="branch-map">🗺️</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOCETO: Testimonios de clientes ============ -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-eyebrow">Clientes felices</span>
+        <h2 class="section-title">Lo que dicen de nosotros</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Compré la lista completa de útiles para mis dos hijos y todo llegó a tiempo, súper recomendados."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MP</div>
+            <div><p class="testimonial-name">María Paz</p><p class="testimonial-role">Cliente frecuente</p></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Excelente atención para pedidos corporativos, siempre a tiempo con la facturación."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JC</div>
+            <div><p class="testimonial-name">Jorge Cevallos</p><p class="testimonial-role">Compras, Empresa ABC</p></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Buenos precios y variedad. El pago a 12 meses sin interés me ayudó muchísimo."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AR</div>
+            <div><p class="testimonial-name">Andrea Rojas</p><p class="testimonial-role">Cliente</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOCETO: Suscripción a novedades ============ -->
+    <section class="section" style="padding-top:0;">
+      <div class="newsletter-block">
+        <h3>Recibe nuestras ofertas antes que nadie</h3>
+        <p>Suscríbete y entérate primero de descuentos, novedades y campañas de temporada escolar.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Tu correo electrónico" required>
+          <button type="submit">Suscribirme</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ BOCETO: Footer con información de contacto ============ -->
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-about">
+          <img src="assets/Logo web.jpg" class="footer-logo" alt="Área Comercial">
+          <p>Papelería, tecnología y bazar para el hogar, la oficina y la escuela. Envíos a todo el país y atención personalizada.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="TikTok">tt</a>
+            <a href="https://wa.me/593998741034" target="_blank" rel="noopener" aria-label="WhatsApp">wa</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Enlaces</h4>
+          <ul class="footer-links">
+            <li><a href="#lista">Lista de útiles</a></li>
+            <li><a href="#destacados">Destacados</a></li>
+            <li><a href="#corporativo">Ventas corporativas</a></li>
+            <li><a href="#sucursales">Sucursales</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Ayuda</h4>
+          <ul class="footer-links">
+            <li><a href="#">Preguntas frecuentes</a></li>
+            <li><a href="#">Política de envíos</a></li>
+            <li><a href="#">Cambios y devoluciones</a></li>
+            <li><a href="#">Términos y condiciones</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contáctanos</h4>
+          <ul class="footer-contact">
+            <li><span class="icon">📍</span><span>Av. Amazonas N38-15 y Naciones Unidas, Quito, Ecuador</span></li>
+            <li><span class="icon">📞</span><span>(02) 234 5678</span></li>
+            <li><span class="icon">💬</span><span><a href="https://wa.me/593998741034" target="_blank" rel="noopener" style="color:inherit;">+593 99 874 1034 (WhatsApp)</a></span></li>
+            <li><span class="icon">✉️</span><span>ventas@areacomercial.ec</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Área Comercial. Todos los derechos reservados.</p>
+        <div class="footer-payments">💳 💵 🏦</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Botón Flotante de WhatsApp (fuera de .main-wrapper para que "fixed" quede anclado a la ventana, no al contenedor animado) -->
+  <a
+    href="https://wa.me/593998741034?text=Hola%2C%20quiero%20más%20información"
+    target="_blank"
+    rel="noopener"
+    class="floating-whatsapp"
+    aria-label="Escríbenos por WhatsApp"
+  >
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.484L4 29l7.71-1.865A11.94 11.94 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3zm0 21.75c-1.938 0-3.75-.51-5.32-1.402l-.382-.222-4.573 1.106 1.135-4.46-.25-.393A9.7 9.7 0 0 1 5.25 15c0-5.936 4.815-10.75 10.751-10.75S26.75 9.064 26.75 15 21.937 24.75 16.001 24.75zm5.914-8.05c-.32-.16-1.89-.933-2.183-1.04-.293-.108-.507-.16-.72.16-.212.32-.827 1.04-1.014 1.253-.187.213-.373.24-.693.08-.32-.16-1.352-.499-2.575-1.593-.951-.85-1.593-1.9-1.78-2.22-.187-.32-.02-.493.14-.653.144-.144.32-.373.48-.56.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.72-1.735-.987-2.376-.26-.626-.523-.54-.72-.55l-.613-.01c-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.094 1.307 3.307.16.213 2.257 3.448 5.468 4.834.764.33 1.36.527 1.825.674.767.244 1.465.21 2.017.127.615-.092 1.89-.773 2.157-1.52.267-.746.267-1.386.187-1.52-.08-.133-.293-.213-.613-.373z"/>
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
