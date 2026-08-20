@@ -539,3 +539,47 @@ body {
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
+/* =========================================================
+   8. CATÁLOGO WEB (conectado a Firebase — productos.html)
+   ========================================================= */
+.catalog-toolbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  flex-wrap: wrap; margin-bottom: 30px;
+}
+.catalog-search {
+  position: relative; flex: 1; min-width: 260px; max-width: 420px;
+}
+.catalog-search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 14px; opacity: 0.5; pointer-events: none;
+}
+.catalog-search input {
+  width: 100%; padding: 12px 16px 12px 38px; border-radius: 50px;
+  border: 1px solid var(--neutral); font-family: inherit; font-size: 13px;
+  color: var(--ink); background: var(--paper);
+}
+.catalog-search input:focus { outline: 2px solid var(--brand-blue); outline-offset: 1px; }
+
+.catalog-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  border: 1px solid var(--neutral); background: var(--paper); color: var(--ink-sec);
+  padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.3px; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.chip:hover { border-color: var(--brand-blue); color: var(--brand-blue); }
+.chip.active { background: var(--brand-blue); border-color: var(--brand-blue); color: var(--paper); }
+
+.catalog-status {
+  text-align: center; padding: 60px 20px; color: var(--ink-sec); font-size: 14px; font-weight: 600;
+}
+
+/* Ajustes de la tarjeta de producto para imágenes reales de Storage */
+.product-thumb-img { width: 100%; height: 100%; object-fit: cover; }
+.product-desc {
+  font-size: 12px; color: var(--ink-sec); line-height: 1.5; margin: 0 0 8px 0;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.product-stock { font-size: 11px; color: var(--ink-sec); margin: 4px 0 0 0; font-weight: 600; }
+.product-tag-agotado { background: var(--ink-sec); }
+
+.active-link { color: var(--brand-red) !important; }
